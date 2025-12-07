@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.381268Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:10:20.276527Z",
+      "mimetype": "text/x-python",
+      "name": "anti_charm_agent.py",
+      "path": "contents\\Quarks\\CHARM\\AntiCharm\\levo/anti_charm_agent.py",
+      "size": 15837,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.383774Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:10:20.280555Z",
+      "mimetype": "text/x-python",
+      "name": "policies.py",
+      "path": "contents\\Quarks\\CHARM\\AntiCharm\\levo/policies.py",
+      "size": 3920,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.379263Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.383774Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\CHARM\\AntiCharm\\levo",
+  "path": "contents\\Quarks\\CHARM\\AntiCharm\\levo",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

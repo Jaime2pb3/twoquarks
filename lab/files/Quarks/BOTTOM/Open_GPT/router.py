@@ -1,0 +1,1 @@
+class QuarkRouter:def init(self):self.registry = {}    def register(self, name, model):        self.registry[name] = model    def route(self, task_type, x):        if task_type not in self.registry:            raise ValueError(f"No model for task: {task_type}")        return self.registry[task_type](x)

@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.769536Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T04:10:53.257114Z",
+      "mimetype": null,
+      "name": "01_sanity_tabular.ipynb",
+      "path": "Quarks\\DOWN\\Levo-HF\\notebooks/01_sanity_tabular.ipynb",
+      "size": 6188,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.767531Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.769536Z",
+  "mimetype": null,
+  "name": "Quarks\\DOWN\\Levo-HF\\notebooks",
+  "path": "Quarks\\DOWN\\Levo-HF\\notebooks",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TwoQuarks • AI Research • Precision Systems for Adaptive Intelligence</title>
+
+<style>
+/* -------- RESET -------- */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000; --fg:#fff; --muted:rgba(255,255,255,.55);
+  --card:rgba(255,255,255,.04); --card2:rgba(255,255,255,.08);
+  --stroke:rgba(255,255,255,.10); --glass:rgba(0,0,0,.38);
+  --accent:#8cb4ff;
+}
+html,body{height:100%}
+body{
+  font-family: Inter, ui-sans-serif, system-ui, Arial;
+  background:var(--bg); color:var(--fg);
+  overflow-x:hidden; scroll-behavior:smooth;
+}
+
+/* - STARFIELD - */
+#quantumField{
+  position:fixed; inset:0;
+  width:100vw; height:100vh;
+  z-index:-10; background:#000;
+}
+
+/* - NAV - */
+nav{
+  position:fixed; top:0; left:0; right:0;
+  z-index:1000;
+  padding:14px 24px;
+  background:var(--glass); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-inner{
+  max-width:1200px; margin:0 auto;
+  display:flex; align-items:center; gap:16px;
+}
+.brand{
+  font-weight:700; letter-spacing:.2px; font-size:1.1rem;
+}
+
+.nav-links{
+  display:flex; gap:10px; margin-left:18px;
+}
+.nav-links a{
+  text-decoration:none; color:var(--fg);
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  font-size:.9rem; opacity:.86;
+  transition:.18s ease;
+  white-space:nowrap;
+}
+.nav-links a:hover{opacity:1;background:rgba(255,255,255,.06)}
+.nav-links a.active{
+  border-color:rgba(140,180,255,.55);
+  box-shadow:0 0 0 1px rgba(140,180,255,.20) inset;
+}
+
+.spacer-nav{flex:1}
+
+/* CTA wrapper */
+.cta-wrapper{
+  display:flex;
+  gap:10px;
+}
+.cta{
+  border:1px solid rgba(255,255,255,.22);
+  padding:8px 14px; border-radius:24px;
+  cursor:pointer; transition:.15s ease;
+  font-size:.92rem;
+  text-decoration:none;
+  color:var(--fg);
+  display:inline-flex;
+  align-items:center;
+}
+.cta:hover{background:rgba(255,255,255,.08)}
+
+/* - Hamburger  - */
+.menu-btn{
+  display:none; width:37px; height:37px;
+  align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px; cursor:pointer;
+}
+.menu-btn span{
+  display:block; width:18px; height:2px; background:#fff;
+  position:relative;
+}
+.menu-btn span::before,
+.menu-btn span::after{
+  content:""; position:absolute; left:0;
+  width:18px; height:2px; background:#fff;
+}
+.menu-btn span::before{top:-6px}
+.menu-btn span::after{top:6px}
+
+@media (max-width:980px){
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:58px;
+    left:16px;
+    right:16px;
+    padding:10px;
+    border-radius:14px;
+    background:var(--glass);
+    backdrop-filter:blur(14px);
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .menu-btn{
+    display:flex;
+  }
+
+  .cta-wrapper{
+    display:none;
+  }
+}
+
+/* - HERO - */
+.hero{
+  min-height:82vh;
+  display:grid; place-items:center;
+  text-align:center;
+  padding:0 6vw;
+}
+.hero h1{
+  font-size: clamp(2rem, 5.2vw, 3.1rem);
+  font-weight:500; line-height:1.18;
+  max-width:940px;
+  opacity:0; animation:fadeIn 1.1s ease forwards .15s;
+}
+@keyframes fadeIn{to{opacity:1}}
+
+/* - QUARK SECTIONS - */
+.section{padding:104px 6vw}
+.section h2{
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+  font-weight:500; margin-bottom:8px;
+}
+.section .subtitle{
+  font-size:.98rem; opacity:.48; margin-bottom:22px;
+}
+
+/* -------- CARDS -------- */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(340px,1fr));
+  gap:24px;
+}
+.card{
+  border:1px solid var(--stroke);
+  background:var(--card);
+  backdrop-filter:blur(8px);
+  border-radius:12px;
+  padding:26px;
+  height:178px;
+  transition:.38s ease;
+}
+.card:hover{
+  background:var(--card2);
+  transform:translateY(-3px);
+}
+.card .date{
+  opacity:.55; font-size:.9rem; margin-bottom:10px;
+}
+.card .title{
+  font-size:1.12rem; font-weight:400; line-height:1.38;
+}
+
+/* - CONTACT - */
+.links{
+  display:flex; gap:14px;
+  justify-content:center; flex-wrap:wrap;
+  margin-top:28px;
+}
+.links a{
+  color:#fff; text-decoration:none;
+  opacity:.78;
+  border:1px solid rgba(255,255,255,.16);
+  padding:10px 14px; border-radius:999px;
+  transition:.15s ease; font-size:.95rem;
+}
+.links a:hover{
+  opacity:1; background:rgba(255,255,255,.08);
+}
+
+/* - FOOTER - */
+.footer{
+  padding:80px 6vw; text-align:center;
+  opacity:.82; font-size:.92rem;
+}
+
+/* ----- QUARK COLLAPSE ----- */
+.card.collapsed {
+  position: relative;
+  height: 178px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* hide original text when collapsed */
+.card.collapsed .date,
+.card.collapsed .title {
+  opacity: 0;
+}
+
+/* button container */
+.quark-buttons {
+  position: absolute;
+  display: flex;
+  gap: 14px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity .38s ease, transform .38s ease;
+}
+
+.card.show-buttons .quark-buttons {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* button style */
+.quark-buttons a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.06);
+  font-size: .88rem;
+  transition: .38s ease;
+}
+
+.quark-buttons a:hover {
+  background: rgba(255,255,255,.18);
+}
+
+/* disintegration animation */
+@keyframes quarkDisperse {
+  0% { filter: blur(0px); opacity: 1; }
+  50% { filter: blur(6px); opacity: 0.4; }
+  100% { filter: blur(14px); opacity: 0; }
+}
+
+.card.disintegrate .date,
+.card.disintegrate .title {
+  animation: quarkDisperse .35s ease forwards;
+}
+
+/* anchor offset */
+.section + .section{scroll-margin-top:84px}
+</style>
+</head>
+
+<body>
+
+<canvas id="quantumField"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+
+    <!-- Brand -->
+    <div class="brand">TwoQuarks</div>
+
+    <!-- Mobile menu button -->
+    <div class="menu-btn" id="menuBtn">
+      <span></span>
+    </div>
+
+    <!-- Main links -->
+    <div class="nav-links" id="navLinks">
+      <a href="#down">DOWN</a>
+      <a href="#strange">STRANGE</a>
+      <a href="#top">TOP</a>
+      <a href="#charm">CHARM</a>
+      <a href="#up">UP</a>
+      <a href="#bottom">BOTTOM</a>
+    </div>
+
+    <!-- Spacer -->
+    <div class="spacer-nav"></div>
+
+    <!-- CTA buttons -->
+    <div class="cta-wrapper">
+      <a class="cta" href="notebooks.html" target="_self">
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Precision systems for adaptive intelligence.</h1>
+</section>
+
+<!-- DOWN -->
+<section class="section" id="down">
+  <h2>DOWN — Transitions</h2>
+  <div class="subtitle">State change • Pipeline flow • Dynamic adaptation.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="date">Oct–Nov 2025</div>
+      <div class="title">Levo-HF Down-Flavor Oscillatory Q-Learning</div>
+    </div>
+    <div class="card">
+      <div class="date">Oct 2025</div>
+      <div class="title">LevoParadoxIsomer — Tabular dual-Q for dynamic risk biasing</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRANGE -->
+<section class="section" id="strange">
+  <h2>STRANGE — Color Confinement</h2>
+  <div class="subtitle">Composite agents • Emergent reconstruction.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="date">Nov 2025</div>
+      <div class="title">Flavor Strange — Thermodynamic swarm control</div>
+    </div>
+    <div class="card">
+      <div class="date">Nov 2025</div>
+      <div class="title">Flavor AntiStrange — Latent potential regulator</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP -->
+<section class="section" id="top">
+  <h2>TOP — Heavy States</h2>
+  <div class="subtitle">High-mass architectures • Full-scale stacks.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="date">2025</div>
+      <div class="title">Integrated LevoBell Evolution Stack</div>
+    </div>
+    <div class="card">
+      <div class="date">2025</div>
+      <div class="title">Paradox-Driven Adaptive RL Core</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARM -->
+<section class="section" id="charm">
+  <h2>CHARM — Elementaries</h2>
+  <div class="subtitle">Kernels • ZO primitives • CUDA-level reasoning.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="date">July 2025</div>
+      <div class="title">Zero-Order Optimization Loops (Z-OLO)</div>
+    </div>
+    <div class="card">
+      <div class="date">August 2025</div>
+      <div class="title">High-frequency perturbation policies</div>
+    </div>
+  </div>
+</section>
+
+<!-- UP -->
+<section class="section" id="up">
+  <h2>UP — <i>Truth</i> 𝑻</h2>
+  <div class="subtitle">Validated output • Observable results.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="date">February 2025</div>
+      <div class="title">LevoBell — structural reward-driven intelligence</div>
+    </div>
+    <div class="card">
+      <div class="date">March 2025</div>
+      <div class="title">Bellman-Shift Stability Baseline</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM -->
+<section class="section" id="bottom">
+  <h2>BOTTOM — Start Interaction</h2>
+  <div class="subtitle">Entry points to the lab.</div>
+
+  <div class="links">
+    <a href="https://github.com/Jaime2pb3" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/jaimedeepmind/" target="_blank">LinkedIn</a>
+    <a href="mailto:research@twoquarks.com">Email</a>
+    <a href="Quarks/BOTTOM/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2025 TwoQuarks • research, precision, sobriety, intent.
+</div>
+
+<!-- STARFIELD SCRIPT -->
+<script>
+const canvas = document.getElementById('quantumField');
+const ctx = canvas.getContext('2d');
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+let particles=[];
+let count=680;
+
+for(let i=0;i<count;i++){
+  particles.push({
+    x:(Math.random()-0.5)*canvas.width,
+    y:(Math.random()-0.5)*canvas.height,
+    z:Math.random()*canvas.width,
+  });
+}
+
+function render(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  for(let p of particles){
+    p.z -= 2.2;
+    if(p.z<1){
+      p.x=(Math.random()-0.7)*canvas.width;
+      p.y=(Math.random()-0.7)*canvas.height;
+      p.z=canvas.width;
+    }
+
+    let k=128/p.z;
+    let px=p.x*k+canvas.width/2;
+    let py=p.y*k+canvas.height/2;
+    let size=(1-p.z/canvas.width)*1.29;
+
+    ctx.beginPath();
+    ctx.fillStyle="rgba(140,180,255,0.85)";
+    ctx.arc(px,py,size,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  requestAnimationFrame(render);
+}
+render();
+</script>
+
+<script>
+// QUARK COLLAPSE LOGIC (toggle)
+document.querySelectorAll('.card').forEach(card => {
+  const btns = document.createElement('div');
+  btns.className = 'quark-buttons';
+  btns.innerHTML = `
+    <a href="#">README</a>
+    <a href="#">MODEL</a>
+    <a href="#">GRAPHICS</a>
+  `;
+  card.appendChild(btns);
+
+  btns.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.stopPropagation();
+    });
+  });
+
+  card.addEventListener('click', () => {
+    const isCollapsed = card.classList.contains('collapsed');
+
+    if (!isCollapsed) {
+      card.classList.add('disintegrate');
+      setTimeout(() => {
+        card.classList.add('collapsed', 'show-buttons');
+      }, 350);
+    } else {
+      card.classList.remove('collapsed', 'show-buttons', 'disintegrate');
+    }
+  });
+});
+</script>
+
+<script>
+// ===== UNIVERSAL QUARK ROUTER =====
+
+const quarkSectionMap = {
+  "down":   "DOWN",
+  "up":     "UP",
+  "charm":  "CHARM",
+  "strange":"STRANGE",
+  "top":    "TOP",
+  "bottom": "BOTTOM"
+};
+
+// 2. Card title -> project metadata inside that QUARK
+const projectMap = {
+  // DOWN
+  "Levo-HF Down-Flavor Oscillatory Q-Learning": {
+    folder: "Levo-HF",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics: "GRAPHICS.md"
+  },
+  "LevoParadoxIsomer — Tabular dual-Q for dynamic risk biasing": {
+    folder: "LevoParadoxIsomer",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics: "GRAPHICS.md"
+  },
+
+  // STRANGE  
+  "Flavor Strange — Thermodynamic swarm control": {
+    folder: "Strange",
+    readme:  "README.md",
+    model:   "notebooks/Strange_HypothesisLab.ipynb",
+    graphics:"GRAPHICS.md"
+  },
+  "Flavor AntiStrange — Latent potential regulator": {
+    folder: "AntiStrange",
+    readme:  "README.md",
+    model:   "notebooks/antistrange_HypotesisLab.ipynb",
+    graphics:"GRAPHICS.md"
+  },
+
+  // TOP
+  "Integrated LevoBell Evolution Stack": {
+    folder: "Levobell_evolution",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics:"GRAPHICS.md"
+  },
+  "Paradox-Driven Adaptive RL Core": {
+    folder: "Paradox_driven",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics:"GRAPHICS.md"
+  },
+
+  // CHARM
+  "Zero-Order Optimization Loops (Z-OLO)": {
+    folder: "Z_olo",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics:"GRAPHICS.md"
+  },
+  "High-frequency perturbation policies": {
+    folder: "Freq_policies",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics:"GRAPHICS.md"
+  },
+
+  // UP
+  "LevoBell — structural reward-driven intelligence": {
+    folder: "Levobell",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics:"GRAPHICS.md"
+  },
+  "Bellman-Shift Stability Baseline": {
+    folder: "Bellman-Shift",
+    readme: "README.md",
+    model:  "MODEL.md",
+    graphics:"GRAPHICS.md"
+  }
+};
+
+document.querySelectorAll('.section').forEach(section => {
+  const secID = section.id.toLowerCase();
+  const quarkFolder = quarkSectionMap[secID];
+  if (!quarkFolder) return;
+
+  const cards = section.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    const titleEl = card.querySelector('.title');
+    if (!titleEl) return;
+
+    const rawTitle = titleEl.textContent.trim();
+    const normalizedTitle = rawTitle.replace(/\.$/, "");
+
+    const meta = projectMap[normalizedTitle];
+    const btns = card.querySelector('.quark-buttons');
+    if (!btns) return;
+
+    if (meta) {
+      const base = `Quarks/${quarkFolder}/${meta.folder}`;
+
+      const readmeHref   = meta.readme   ? `${base}/${meta.readme}`   : base;
+      const modelHref    = meta.model    ? `${base}/${meta.model}`    : base;
+      const graphicsHref = meta.graphics ? `${base}/${meta.graphics}` : base;
+
+      btns.innerHTML = `
+        <a href="${readmeHref}"   target="_blank">README</a>
+        <a href="${modelHref}"    target="_blank">MODEL</a>
+        <a href="${graphicsHref}" target="_blank">GRAPHICS</a>
+      `;
+    } else {
+      btns.innerHTML = `
+        <a>README</a>
+        <a>MODEL</a>
+        <a>GRAPHICS</a>
+      `;
+    }
+  });
+});
+</script>
+
+<script>
+// HAMBURGER NAV
+const menuBtn  = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    menuBtn.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.classList.remove('open');
+    });
+  });
+}
+</script>
+
+</body>
+</html>

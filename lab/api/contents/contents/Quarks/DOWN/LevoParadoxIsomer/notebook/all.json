@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.452533Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.898786Z",
+      "mimetype": null,
+      "name": "01_paradox_tabular.ipynb",
+      "path": "contents\\Quarks\\DOWN\\LevoParadoxIsomer\\notebook/01_paradox_tabular.ipynb",
+      "size": 2983,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.451532Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.452533Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\DOWN\\LevoParadoxIsomer\\notebook",
+  "path": "contents\\Quarks\\DOWN\\LevoParadoxIsomer\\notebook",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

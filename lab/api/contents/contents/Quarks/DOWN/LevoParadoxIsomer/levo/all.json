@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.447534Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.877270Z",
+      "mimetype": "text/x-python",
+      "name": "agent_levo_paradox.py",
+      "path": "contents\\Quarks\\DOWN\\LevoParadoxIsomer\\levo/agent_levo_paradox.py",
+      "size": 13458,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.447534Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.447534Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\DOWN\\LevoParadoxIsomer\\levo",
+  "path": "contents\\Quarks\\DOWN\\LevoParadoxIsomer\\levo",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

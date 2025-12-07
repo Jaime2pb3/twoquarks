@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.965482Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.967489Z",
+      "mimetype": null,
+      "name": "Levobell_evolution",
+      "path": "Quarks\\TOP/Levobell_evolution",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.967489Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.969494Z",
+      "mimetype": null,
+      "name": "Paradox_driven",
+      "path": "Quarks\\TOP/Paradox_driven",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.965482Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.967489Z",
+  "mimetype": null,
+  "name": "Quarks\\TOP",
+  "path": "Quarks\\TOP",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

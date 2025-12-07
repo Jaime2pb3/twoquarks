@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.845254Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.890277Z",
+      "mimetype": "text/x-python",
+      "name": "analyze_paradox_results.py",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\results/analyze_paradox_results.py",
+      "size": 3196,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.855327Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.921788Z",
+      "mimetype": "application/vnd.ms-excel",
+      "name": "paradox_ppo_results.csv",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\results/paradox_ppo_results.csv",
+      "size": 95514,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.869531Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.913788Z",
+      "mimetype": "application/vnd.ms-excel",
+      "name": "paradox_tabular_results.csv",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\results/paradox_tabular_results.csv",
+      "size": 138734,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.843742Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.869531Z",
+  "mimetype": null,
+  "name": "Quarks\\DOWN\\LevoParadoxIsomer\\results",
+  "path": "Quarks\\DOWN\\LevoParadoxIsomer\\results",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

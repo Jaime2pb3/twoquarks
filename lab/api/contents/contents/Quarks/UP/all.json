@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.506989Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.519577Z",
+      "mimetype": null,
+      "name": "Bellman-Shift",
+      "path": "contents\\Quarks\\UP/Bellman-Shift",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.521577Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.537665Z",
+      "mimetype": null,
+      "name": "Levobell",
+      "path": "contents\\Quarks\\UP/Levobell",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.506989Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.521577Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\UP",
+  "path": "contents\\Quarks\\UP",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

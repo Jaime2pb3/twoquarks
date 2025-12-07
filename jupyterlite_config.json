@@ -1,0 +1,9 @@
+{
+  "LiteBuildConfig": {
+    "apps": ["lab"],
+    "contents": ["."],
+    "extra_ignore_contents": [
+      "^\\.well-known"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.465149Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T09:27:36.945746Z",
+      "mimetype": "text/x-python",
+      "name": "run_antistrange_hypothesis_lab.py",
+      "path": "contents\\Quarks\\STRANGE\\AntiStrange\\exp/run_antistrange_hypothesis_lab.py",
+      "size": 2276,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.464142Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.465149Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\STRANGE\\AntiStrange\\exp",
+  "path": "contents\\Quarks\\STRANGE\\AntiStrange\\exp",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

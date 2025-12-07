@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.707419Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:10:20.322407Z",
+      "mimetype": null,
+      "name": "Charm_EnchantedValley_core.ipynb",
+      "path": "Quarks\\CHARM\\Charm\\notebooks/Charm_EnchantedValley_core.ipynb",
+      "size": 2928,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.698872Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.707419Z",
+  "mimetype": null,
+  "name": "Quarks\\CHARM\\Charm\\notebooks",
+  "path": "Quarks\\CHARM\\Charm\\notebooks",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

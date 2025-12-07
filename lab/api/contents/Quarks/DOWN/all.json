@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.735346Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.775573Z",
+      "mimetype": null,
+      "name": "Levo-HF",
+      "path": "Quarks\\DOWN/Levo-HF",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.778150Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.843742Z",
+      "mimetype": null,
+      "name": "LevoParadoxIsomer",
+      "path": "Quarks\\DOWN/LevoParadoxIsomer",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.735346Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.778150Z",
+  "mimetype": null,
+  "name": "Quarks\\DOWN",
+  "path": "Quarks\\DOWN",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

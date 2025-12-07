@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.794915Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.924788Z",
+      "mimetype": "image/png",
+      "name": "Figure_1.png",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\GRAPHICS/Figure_1.png",
+      "size": 48910,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.803451Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.928791Z",
+      "mimetype": "image/png",
+      "name": "Figure_2.png",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\GRAPHICS/Figure_2.png",
+      "size": 67647,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.785699Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.803451Z",
+  "mimetype": null,
+  "name": "Quarks\\DOWN\\LevoParadoxIsomer\\GRAPHICS",
+  "path": "Quarks\\DOWN\\LevoParadoxIsomer\\GRAPHICS",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

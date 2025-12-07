@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.387802Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:10:20.288949Z",
+      "mimetype": null,
+      "name": "AntiCharm_gridworld_demo.ipynb",
+      "path": "contents\\Quarks\\CHARM\\AntiCharm\\notebooks/AntiCharm_gridworld_demo.ipynb",
+      "size": 4079,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.387802Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.387802Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\CHARM\\AntiCharm\\notebooks",
+  "path": "contents\\Quarks\\CHARM\\AntiCharm\\notebooks",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

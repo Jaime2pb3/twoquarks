@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.480256Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T06:28:38.275130Z",
+      "mimetype": null,
+      "name": "antistrange_HypotesisLab.ipynb",
+      "path": "contents\\Quarks\\STRANGE\\Strange\\exp/antistrange_HypotesisLab.ipynb",
+      "size": 14094,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.483769Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T06:55:34.184230Z",
+      "mimetype": "text/x-python",
+      "name": "run_antistrange_hypothesis_lab.py",
+      "path": "contents\\Quarks\\STRANGE\\Strange\\exp/run_antistrange_hypothesis_lab.py",
+      "size": 2276,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.485793Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T07:05:47.754406Z",
+      "mimetype": "text/x-python",
+      "name": "run_strange_hypothesis_lab.py",
+      "path": "contents\\Quarks\\STRANGE\\Strange\\exp/run_strange_hypothesis_lab.py",
+      "size": 1929,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.480256Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.485793Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\STRANGE\\Strange\\exp",
+  "path": "contents\\Quarks\\STRANGE\\Strange\\exp",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.553384Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.557413Z",
+      "mimetype": null,
+      "name": "Open_GPT",
+      "path": "Quarks\\BOTTOM/Open_GPT",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.567584Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T16:34:05.573743Z",
+      "mimetype": "application/pdf",
+      "name": "resume.pdf",
+      "path": "Quarks\\BOTTOM/resume.pdf",
+      "size": 49315,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.553384Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.567584Z",
+  "mimetype": null,
+  "name": "Quarks\\BOTTOM",
+  "path": "Quarks\\BOTTOM",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

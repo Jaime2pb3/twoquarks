@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.969494Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-20T11:33:58.102127Z",
+      "mimetype": "text/markdown",
+      "name": "README.MD",
+      "path": "Quarks\\TOP\\Paradox_driven/README.MD",
+      "size": 177,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.967489Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.969494Z",
+  "mimetype": null,
+  "name": "Quarks\\TOP\\Paradox_driven",
+  "path": "Quarks\\TOP\\Paradox_driven",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

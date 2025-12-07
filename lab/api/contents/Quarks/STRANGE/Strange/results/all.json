@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.960860Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T07:40:27.810162Z",
+      "mimetype": "application/vnd.ms-excel",
+      "name": "strange_hypothesis_lab.csv",
+      "path": "Quarks\\STRANGE\\Strange\\results/strange_hypothesis_lab.csv",
+      "size": 1433781,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.952721Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.960860Z",
+  "mimetype": null,
+  "name": "Quarks\\STRANGE\\Strange\\results",
+  "path": "Quarks\\STRANGE\\Strange\\results",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

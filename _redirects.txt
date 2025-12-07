@@ -1,0 +1,46 @@
+# -----------------------------------------
+# 🔒 TwoQuarks Security Redirect Rules
+# -----------------------------------------
+
+# Block common paths in WordPress, Joomla, and legacy CMS
+/wp-admin/*          /404.html 404
+/wordpress/*         /404.html 404
+/xmlrpc.php          /404.html 404
+/*/wlwmanifest.xml   /404.html 404
+/wlwmanifest.xml     /404.html 404
+/wp-login.php        /404.html 404
+/wp-content/*        /404.html 404
+/wp-includes/*       /404.html 404
+/wp-json/*           /404.html 404
+/wp-config.php       /404.html 404
+/administrator/*     /404.html 404
+/cms/*               /404.html 404
+/blog/*              /404.html 404
+/magento/*           /404.html 404
+/drupal/*            /404.html 404
+/site/*              /404.html 404
+/vendor/*            /404.html 404
+
+# Block requests for internal settings or hidden files
+/.git/*              /404.html 404
+/.env                /404.html 404
+/.htaccess           /404.html 404
+/.well-known/*       /404.html 404
+/server-status       /404.html 404
+/phpinfo.php         /404.html 404
+/setup.php           /404.html 404
+/composer.json       /404.html 404
+/package.json        /404.html 404
+
+# -----------------------------------------
+# 🚫 Block fake API or scan attempts
+# -----------------------------------------
+/test/*              /404.html 404
+/api/*               /404.html 404
+/config/*            /404.html 404
+/cgi-bin/*           /404.html 404
+
+# -----------------------------------------
+# ✅ Allow fallback to custom 404
+# -----------------------------------------
+/*                   /404.html 404

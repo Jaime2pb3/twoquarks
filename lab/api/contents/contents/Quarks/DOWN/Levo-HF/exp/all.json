@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.413705Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T03:55:03.237806Z",
+      "mimetype": "text/x-python",
+      "name": "plot_corrupted_valley_results.py",
+      "path": "contents\\Quarks\\DOWN\\Levo-HF\\exp/plot_corrupted_valley_results.py",
+      "size": 3654,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.415734Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T03:54:29.398190Z",
+      "mimetype": "text/x-python",
+      "name": "run_corrupted_valley_tabular.py",
+      "path": "contents\\Quarks\\DOWN\\Levo-HF\\exp/run_corrupted_valley_tabular.py",
+      "size": 8249,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.413705Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.415734Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\DOWN\\Levo-HF\\exp",
+  "path": "contents\\Quarks\\DOWN\\Levo-HF\\exp",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

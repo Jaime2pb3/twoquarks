@@ -1,0 +1,371 @@
+<!-- 
+Advertencia: El presente codigo puede contener comentarios ironicos, groserias, 
+metaforas absurdas, sarcasmo y majaderias que no pretenden de ninguna manera 
+Ni ofender, Ni faltar al respeto a ningun ser viviente (o conciente, o inconsciente
+o digital). Simplemente es la forma en la que yo y el codigo nos entendemos
+asi como mi manera de decirle a mi YO  del Futuro en que estabamos pensando 
+y lo que estabamos pasando, en este preciso momento.... asi que: 
+"Jaime, no se en que momento nos volvimos locos, ni cuando es que comenzo
+esta enfermiza obsesion por el Research, el codigo raro y por entender el universo.... 
+pero espero que cuando vuelvas a leer esto, sea cuando nuestro objetivo se haya cumplido
+porque la neta cambiar la manera en la que comprendemos el mundo y nuestra existencia
+No debe ser tan complicado... bro, desde este presente que es tu pasado: tqm jaime"
+
+************** PUNTO SIN RETORNO ***************
+A partir de aqui, comienza la aventura........
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title><strong> IMSS </strong>• Intelligent Monitor Soft System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Una Tipografía Tech Deep Mind JaimeStyle -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- JaimeStyles Black Quantum -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Con Fondo dinámico negro a su lado-- digo, azulado, ASI DISEÑAMOS AQUI PSSS -->
+  <div class="bg-quantum"></div> 
+  <div class="bg-grid"></div>
+
+  <!-- TOPBAR QUE NOO NO ES EL SEGURO, ESTE SI ES MARCA REGISTRADA -->
+  <header class="topbar">
+    <h1><strong> IMSS </strong>• Intelligent Monitor Soft System</h1>
+    <p>Luis Jaime Ledesma Perez • A2U4 • Progracion de Sistemas Operativos</p>
+    <!-- Y PA SABER QUIEN JIJOS HIZO ESTE PIN.. TORESCo PROGRAMA -->
+  </header>
+
+  <!-- NAVIGATION THROUGHT THE TABS IN ENGLISH TO PRACTICE -->
+  <nav class="tabs">
+    <button class="tab-button active" data-target="menu">Menú principal</button>
+    <button class="tab-button" data-target="ingreso">Ingreso de paciente</button>
+    <button class="tab-button" data-target="monitores">HUD de monitoreo</button>
+    <button class="tab-button" data-target="estado">Estado clínico actual</button>
+    <button class="tab-button" data-target="registros">Registros · Altas · Qx</button>
+  </nav>
+
+  <!-- MAIN (YES, IS JAVA NOTEBOOK HTML BROO) CONTENT -->
+  <main>
+
+    <!-- EL MENÚ PRINCIPAL PA SABER QUE Y QUE TENEMOS -->
+    <section id="menu" class="screen active">
+      <div class="screen-header">
+        <div>
+          <h2>Menú principal</h2>
+          <p>Panel: Navegación por el Sistema Operativo (Clinique Version)</p>
+        </div>
+        <div class="patient-tag">
+          <span>User: Enfermería · Turno: Matutino </span>
+          <!-- de 7 a 3 nomas, carnal -->
+        </div>
+      </div>
+
+      <section class="menu-grid">
+        <!-- pa darle vuelta a la pagina -->
+        <article class="card menu-card" onclick="cambiarPantalla('ingreso')">
+          <h3>Ingreso de Paciente</h3>
+          <p>Captura los datos del PX.</p>
+          <span class="menu-pill">crear_registro_paciente()</span>
+          <!-- Su registro en Cloud como no -->
+        </article>
+
+        <article class="card menu-card" onclick="cambiarPantalla('monitores')">
+          <h3>HUD • Monitoreo</h3>
+          <!-- y bien tecnologico, mas freson que el puerta de hierro -->
+          <p>Vista central del Estado del PX · Monitoreo biomédico.</p>
+          <span class="menu-pill">abrir_monitor()</span>
+        </article>
+
+        <article class="card menu-card" onclick="cambiarPantalla('estado')">
+          <h3>Estado clínico · Tiempo real</h3>
+          <!-- a wilson, nada mas rapido que el utopico tiempo -->
+          <p>Consolidado de riesgo y evolución.</p>
+          <span class="menu-pill">calcular_estado_clinico()</span>
+        </article>
+
+        <article class="card menu-card" onclick="cambiarPantalla('registros')">
+          <h3>Registros · Altas · Programación QX</h3>
+          <p>Historial clínico · Agenda · HIS.</p>
+          <span class="menu-pill">sincronizar_registro()</span>
+        </article>
+      </section>
+
+      <section class="card log-card">
+        <h3>Registro de eventos · Menú</h3>
+        <ul id="log-menu" class="log-list"></ul>
+      </section>
+    </section>
+    <!-- pa irnos y volver.... tal cual y como nos pasa con la esposa -->
+
+    <!-- INGRESO DE PACIENTE -->
+    <section id="ingreso" class="screen">
+      <div class="screen-header">
+        <div>
+          <h2>Registro de Ingreso</h2>
+          <p>Nuevo registro · Actualización de ficha clínica</p>
+        </div>
+        <!-- pa los nuevos que no conociamos, si ya son clientes frecuentes nomas le actualizamos -->
+
+        <div class="patient-tag">
+          <span>IMSS · Data Input Module</span>
+          <!-- No es el IMSS QUE CONOCES, Es otro mas culebra -->
+        </div>
+      </div>
+
+      <section class="form-layout card glass">
+        <div class="form-column">
+          <label>Nombre del paciente
+            <input type="text" id="pac-nombre" placeholder="Ej. José (Pepe) José" />
+          </label>
+          <!-- Ahijo de la chispita, aqui se atiende el princhupe de la cancion bro -->
+
+          <label>Edad 
+            <input type="number" id="pac-edad" placeholder="Ej. 30 y tantos" />
+          </label>
+
+          <label>Diagnóstico
+            <input type="text" id="pac-dx" placeholder="Ej. Sindrome de Dunning Krugen" />
+          </label>
+        </div>
+
+        <div class="form-column">
+          <label>Motivo del ingreso
+            <textarea id="pac-motivo" rows="3" placeholder="Le rompieron el corazon :("></textarea>
+          </label>
+
+          <label>Antecedentes
+            <textarea id="pac-ant" rows="3" placeholder="Ya van dos o tres veces"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="card glass">
+        <button class="primary" onclick="guardarPaciente()">Guardar</button>
+        <p class="hint">Registro Exitoso en módulo clínico.</p>
+        <!-- Pa que no se nos olvide -->
+      </section>
+
+      <section class="card log-card glass">
+        <h3>Eventos · Ingreso</h3>
+        <ul id="log-ingreso" class="log-list"></ul>
+      </section>
+    </section>
+    <!-- y verlo despues -->
+
+    <!-- HUD DE MONITOREO -->
+    <!-- me gusto un buen, primer le metimos un canvas. pero no valio berta -->
+    <section id="monitores" class="screen">
+
+      <div class="screen-header">
+        <div>
+          <h2>Sistema de Monitoreo</h2>
+          <p>Control y Vigilancia biomédica · Alarmas</p>
+        </div>
+
+        <div class="patient-tag">
+          <span id="mon-paciente">Paciente activo: (ninguno)</span>
+          <span class="risk risk-ok" id="risk-level">Riesgo: desconocido</span>
+        </div>
+      </div>
+
+      <section class="hud-layout">
+
+        <!-- ECG IZQUIERDO -->
+        <div class="card hud-panel glass">
+          <h3>ECG · Frecuencia cardiaca</h3>
+
+          <div class="graph-placeholder">
+            <img src="EEG_1.gif" alt="ECG • Monitoreo en tiempo real" class="monitor-gif">
+          </div>
+
+          <p class="value-row">
+            FC: <strong id="hr-value">--</strong> <span>bpm</span>
+          </p>
+          <p class="hint">Registro · Demo ECG.</p>
+        </div>
+
+        <!-- CENTRO: EL COMPAMISTICOGIRATORIO -->
+        <div class="hud-center glass">
+          <!-- Uuuuufff papá -->
+          <div class="avatar-frame">
+            <img src="hud_paciente.gif" class="avatar-gif" alt="Analizando Estado Actual del PX">
+          </div>
+
+          <div class="avatar-stats">
+            <div>
+              <span class="label">SpO₂</span>
+              <span class="stat" id="spo2-value">--</span><span class="unit">%</span>
+            </div>
+            <div>
+              <span class="label">PAS</span>
+              <span class="stat" id="bp-sys">--</span><span class="unit">mmHg</span>
+            </div>
+            <div>
+              <span class="label">PAD</span>
+              <span class="stat" id="bp-dia">--</span><span class="unit">mmHg</span>
+            </div>
+            <!-- Aqui si damos cuidado integral -->
+          </div>
+        </div>
+
+        <!-- PANEL DERECHO: DISPOSITIVOS -->
+        <!-- Cual mas le hace falta, patron. Aqui tenemos desde -->
+        <div class="card hud-panel glass">
+          <h3>Dispositivos biomédicos • PlugIn</h3>
+          <!-- Oximetros hasta monitores de pensamientos -->
+
+          <div class="devices-list">
+
+            <div class="device-row">
+              <div class="device-info">
+                <span class="status-dot" id="dot-ecg"></span>
+                <span class="device-name">Monitor ECG</span>
+              </div>
+              <button class="secondary" id="btn-ecg" onclick="toggleDispositivo('ecg')">
+                Conectar ECG
+              </button>
+            </div>
+
+            <div class="device-row">
+              <div class="device-info">
+                <span class="status-dot" id="dot-oxi"></span>
+                <span class="device-name">Oxímetro</span>
+              </div>
+              <button class="secondary" id="btn-oxi" onclick="toggleDispositivo('oxi')">
+                Conectar oxímetro
+              </button>
+            </div>
+
+            <div class="device-row">
+              <div class="device-info">
+                <span class="status-dot" id="dot-glu"></span>
+                <span class="device-name">Glucómetro</span>
+              </div>
+              <button class="secondary" id="btn-glu" onclick="toggleDispositivo('glu')">
+                Conectar glucómetro
+              </button>
+            </div>
+
+          </div>
+
+          <h4>Configuracion de Alarmas </h4>
+          <div class="buttons-column">
+            <button onclick="forzarAlarma('presion_alta')">Presión alta</button>
+            <button onclick="forzarAlarma('taquicardia')">Taquicardia</button>
+            <button onclick="toggleBeep()" id="btn-beep">Activar pip</button>
+          </div>
+
+          <p id="alarma-estado" class="hint">Sin alarmas críticas activas.</p>
+        </div>
+
+      </section>
+
+      <section class="card log-card glass">
+        <h3>Eventos · HUD</h3>
+        <ul id="log-mon" class="log-list"></ul>
+      </section>
+
+    </section>
+
+    <!-- ESTADO CLÍNICO -->
+    <section id="estado" class="screen">
+      <div class="screen-header">
+        <div>
+          <h2>Estado clínico actual</h2>
+          <p>Resumen consolidado por paciente</p>
+        </div>
+        <div class="patient-tag"><span>Vista resumen</span></div>
+      </div>
+
+      <section class="cards-grid">
+        <article class="card glass patient-card">
+          <h3>Paciente activo</h3>
+          <p id="estado-resumen">Selecciona un paciente para ver su estado.</p>
+          <p class="badge badge-ok" id="estado-riesgo">Sin datos</p>
+          <button onclick="calcularEstadoClinico()" class="primary">Calcular</button>
+        </article>
+
+        <article class="card glass">
+          <h3>Parámetros de riesgo</h3>
+          <ul class="estado-lista" id="estado-parametros">
+            <li>Frecuencia cardiaca: -- bpm</li>
+            <li>SpO₂: -- %</li>
+            <li>Presión sistólica: -- mmHg</li>
+          </ul>
+          <p class="hint">Parámetros integrados del módulo clínico.</p>
+        </article>
+      </section>
+
+      <section class="card log-card glass">
+        <h3>Eventos · Estado clínico</h3>
+        <ul id="log-estado" class="log-list"></ul>
+      </section>
+    </section>
+
+    <!-- REGISTROS -->
+    <section id="registros" class="screen">
+      <div class="screen-header">
+        <div>
+          <h2>Registros · Altas · Qx</h2>
+          <p>Historial y agenda clínica</p>
+        </div>
+
+        <div class="patient-tag">
+          <span>Integración HIS</span>
+        </div>
+      </div>
+
+      <section class="cards-grid">
+
+        <article class="card glass">
+          <h3>Historial clínico</h3>
+          <ul class="estado-lista">
+            <li>Ingreso: 2025-11-20 · Dolor torácico</li>
+            <li>Estancia: Sala de observación · Cama 3</li>
+            <li>Eventos: 2 alarmas PA alta · 1 taquicardia</li>
+          </ul>
+        </article>
+
+        <article class="card glass">
+          <h3>Agenda quirúrgica</h3>
+          <ul class="estado-lista">
+            <li>Eco cardiograma · 27/11 · 10:30h</li>
+            <li>Valoración cardiología · 28/11 · 09:00h</li>
+            <li>QX programada: pendiente</li>
+          </ul>
+        </article>
+
+        <article class="card glass">
+          <h3>Sincronización HIS</h3>
+          <button class="primary" onclick="sincronizarHIS()">Sincronizar</button>
+          <p id="sync-status" class="hint">Última sincronización: no realizada.</p>
+        </article>
+
+      </section>
+
+      <section class="card log-card glass">
+        <h3>Eventos · Registros</h3>
+        <ul id="log-reg" class="log-list"></ul>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <small><strong>IMSS </strong>• Intelligent Monitor Soft System · DEMO</small>
+  </footer>
+
+  <!-- SCRIPT -->
+  <!-- LA OTRA CARA DE LA MONEDA -->
+  <script src="script.js"></script>
+</body>
+</html>

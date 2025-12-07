@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.780157Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.896277Z",
+      "mimetype": "text/x-python",
+      "name": "run_paradox_ppo_hybrid.py",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\exp/run_paradox_ppo_hybrid.py",
+      "size": 3243,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.783671Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-30T06:33:28.893276Z",
+      "mimetype": "text/x-python",
+      "name": "run_paradox_tabular.py",
+      "path": "Quarks\\DOWN\\LevoParadoxIsomer\\exp/run_paradox_tabular.py",
+      "size": 3335,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.778150Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.783671Z",
+  "mimetype": null,
+  "name": "Quarks\\DOWN\\LevoParadoxIsomer\\exp",
+  "path": "Quarks\\DOWN\\LevoParadoxIsomer\\exp",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

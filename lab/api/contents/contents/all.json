@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.358261Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T07:07:53.161970Z",
+      "mimetype": "text/plain",
+      "name": "immsintyerrfaz.txt",
+      "path": "contents/immsintyerrfaz.txt",
+      "size": 13603,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.363833Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:44:25.594221Z",
+      "mimetype": "application/json",
+      "name": "jupyterlite_config - copia.json",
+      "path": "contents/jupyterlite_config - copia.json",
+      "size": 144,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.367882Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.506989Z",
+      "mimetype": null,
+      "name": "Quarks",
+      "path": "contents/Quarks",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.335492Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.367882Z",
+  "mimetype": null,
+  "name": "contents",
+  "path": "contents",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

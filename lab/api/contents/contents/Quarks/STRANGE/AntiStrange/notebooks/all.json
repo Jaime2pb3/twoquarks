@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.475720Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T09:27:36.960918Z",
+      "mimetype": null,
+      "name": "antistrange_HypotesisLab.ipynb",
+      "path": "contents\\Quarks\\STRANGE\\AntiStrange\\notebooks/antistrange_HypotesisLab.ipynb",
+      "size": 14094,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.473698Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.475720Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\STRANGE\\AntiStrange\\notebooks",
+  "path": "contents\\Quarks\\STRANGE\\AntiStrange\\notebooks",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

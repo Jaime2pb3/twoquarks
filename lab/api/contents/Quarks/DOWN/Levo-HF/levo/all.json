@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.755450Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T03:53:06.185372Z",
+      "mimetype": "text/x-python",
+      "name": "levo_q_tabular.py",
+      "path": "Quarks\\DOWN\\Levo-HF\\levo/levo_q_tabular.py",
+      "size": 2073,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.759461Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T03:53:41.158835Z",
+      "mimetype": "text/x-python",
+      "name": "levo_thinking_ensemble.py",
+      "path": "Quarks\\DOWN\\Levo-HF\\levo/levo_thinking_ensemble.py",
+      "size": 3222,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.762458Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T03:46:22.076120Z",
+      "mimetype": "text/x-python",
+      "name": "policies.py",
+      "path": "Quarks\\DOWN\\Levo-HF\\levo/policies.py",
+      "size": 2543,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.755450Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.762458Z",
+  "mimetype": null,
+  "name": "Quarks\\DOWN\\Levo-HF\\levo",
+  "path": "Quarks\\DOWN\\Levo-HF\\levo",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

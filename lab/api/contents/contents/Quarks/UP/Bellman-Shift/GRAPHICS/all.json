@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.510988Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:34:17.777904Z",
+      "mimetype": "image/png",
+      "name": "inst_variability.png",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift\\GRAPHICS/inst_variability.png",
+      "size": 74512,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.513495Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:34:16.950780Z",
+      "mimetype": "image/png",
+      "name": "lion_policy_shift.png",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift\\GRAPHICS/lion_policy_shift.png",
+      "size": 55545,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.515501Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:34:19.404119Z",
+      "mimetype": "image/png",
+      "name": "stability_index.png",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift\\GRAPHICS/stability_index.png",
+      "size": 72259,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.509990Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.515501Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\UP\\Bellman-Shift\\GRAPHICS",
+  "path": "contents\\Quarks\\UP\\Bellman-Shift\\GRAPHICS",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TwoQuarks • Quark´s Lab</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000; --fg:#fff; --muted:rgba(255,255,255,.55);
+  --card:rgba(255,255,255,.04); --card2:rgba(255,255,255,.08);
+  --stroke:rgba(255,255,255,.10); --glass:rgba(0,0,0,.38);
+  --accent:#8cb4ff;
+}
+html,body{height:100%}
+body{
+  font-family: Inter, ui-sans-serif, system-ui, Arial;
+  background:var(--bg); color:var(--fg);
+  overflow-x:hidden; scroll-behavior:smooth;
+}
+
+/* background */
+#quantumField{
+  position:fixed; inset:0;
+  width:100vw; height:100vh;
+  z-index:-10; background:#000;
+}
+
+/* NAV */
+nav{
+  position:fixed; top:0; left:0; right:0;
+  z-index:1000;
+  padding:14px 24px;
+  background:var(--glass); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-inner{
+  max-width:1200px; margin:0 auto;
+  display:flex; align-items:center; gap:16px;
+}
+.brand{
+  font-weight:700; letter-spacing:.2px; font-size:1.1rem;
+}
+.nav-links{
+  display:flex; gap:10px; margin-left:18px;
+}
+.nav-links a{
+  text-decoration:none; color:var(--fg);
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  font-size:.9rem; opacity:.86;
+  transition:.18s ease;
+  white-space:nowrap;
+}
+.nav-links a:hover{opacity:1;background:rgba(255,255,255,.06)}
+.nav-links a.active{
+  border-color:rgba(140,180,255,.55);
+  box-shadow:0 0 0 1px rgba(140,180,255,.20) inset;
+}
+.spacer-nav{flex:1}
+.cta-wrapper{
+  display:flex;
+  gap:10px;
+}
+.cta{
+  border:1px solid rgba(255,255,255,.22);
+  padding:8px 14px; border-radius:24px;
+  cursor:pointer; transition:.15s ease;
+  font-size:.92rem;
+  text-decoration:none;
+  color:var(--fg);
+  display:inline-flex;
+  align-items:center;
+}
+.cta:hover{background:rgba(255,255,255,.08)}
+
+/* layout */
+.main{
+  max-width:1200px;
+  margin:0 auto;
+  padding:96px 6vw 48px;
+  display:grid;
+  grid-template-columns:minmax(260px,320px) minmax(0,1fr);
+  gap:26px;
+}
+
+/* left column: selector */
+.panel-left h1{
+  font-size:clamp(1.5rem,2.6vw,2.1rem);
+  font-weight:500;
+  margin-bottom:6px;
+}
+.panel-left p{
+  font-size:.95rem;
+  opacity:.7;
+  margin-bottom:20px;
+}
+.nb-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.nb-item{
+  border:1px solid var(--stroke);
+  background:var(--card);
+  border-radius:14px;
+  padding:12px 14px;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.nb-item:hover{
+  background:var(--card2);
+  transform:translateY(-2px);
+}
+.nb-item.active{
+  border-color:rgba(140,180,255,.7);
+  box-shadow:0 0 0 1px rgba(140,180,255,.35) inset;
+  background:rgba(140,180,255,.06);
+}
+.nb-tag{
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+.nb-title{
+  font-size:.98rem;
+  font-weight:500;
+  margin-bottom:2px;
+}
+.nb-meta{
+  font-size:.86rem;
+  opacity:.7;
+}
+
+/* right column: iframe */
+.panel-right{
+  min-height:420px;
+}
+.jlite-frame{
+  width:100%;
+  height:70vh;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.16);
+  overflow:hidden;
+  background:#050816;
+}
+.jlite-frame iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* footer */
+.footer{
+  padding:16px 6vw 40px;
+  text-align:center;
+  opacity:.8;
+  font-size:.88rem;
+}
+
+/* mobile nav */
+.menu-btn{
+  display:none; width:37px; height:37px;
+  align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px; cursor:pointer;
+}
+.menu-btn span{
+  display:block; width:18px; height:2px; background:#fff;
+  position:relative;
+}
+.menu-btn span::before,
+.menu-btn span::after{
+  content:""; position:absolute; left:0;
+  width:18px; height:2px; background:#fff;
+}
+.menu-btn span::before{top:-6px}
+.menu-btn span::after{top:6px}
+
+@media (max-width:980px){
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:58px;
+    left:16px;
+    right:16px;
+    padding:10px;
+    border-radius:14px;
+    background:var(--glass);
+    backdrop-filter:blur(14px);
+    flex-direction:column;
+    gap:8px;
+  }
+  .nav-links.open{display:flex;}
+  .menu-btn{display:flex;}
+  .cta-wrapper{display:none;}
+
+  .main{
+    grid-template-columns:1fr;
+    padding-top:88px;
+  }
+  .jlite-frame{
+    height:65vh;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="quantumField"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">TwoQuarks</div>
+
+    <div class="menu-btn" id="menuBtn">
+      <span></span>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Lab</a>
+      <a href="#run" class="active">Run Quarks</a>
+    </div>
+
+    <div class="spacer-nav"></div>
+    <div class="cta-wrapper">
+      <a class="cta" href="index.html">Back to Lab</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main" id="run">
+  <!-- LEFT: selector -->
+  <section class="panel-left">
+    <h1>Run quark flavors in-browser.</h1>
+    <p>Select a flavor; the JupyterLite panel on the right loads the corresponding notebook.</p>
+
+    <div class="nb-list" id="nbList">
+      <div class="nb-item active" data-path="files/Strange_HypothesisLab.ipynb">
+        <div class="nb-tag">Flavor Strange</div>
+        <div class="nb-title">Thermodynamic swarm control</div>
+        <div class="nb-meta">Multi-agent Q-tabular swarm with temperature gate T for phase-transition analysis.</div>
+      </div>
+
+      <div class="nb-item" data-path="files/antistrange_HypotesisLab.ipynb">
+        <div class="nb-tag">Flavor AntiStrange</div>
+        <div class="nb-title">Latent potential regulator</div>
+        <div class="nb-meta">Conjugate dynamics in low-T regime, tracking latent potential and stability zones.</div>
+      </div>
+
+      <div class="nb-item" data-path="files/DualStrange_HypothesisLab.ipynb">
+        <div class="nb-tag">Dual Strange</div>
+        <div class="nb-title">Coupled phase dynamics</div>
+        <div class="nb-meta">Joint Strange ⊕ AntiStrange run for convergence, interference and control fingerprints.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: JupyterLite iframe -->
+  <section class="panel-right">
+    <div class="jlite-frame">
+      <iframe
+        id="jliteFrame"
+        src="/jupyterlite/lab/index.html?path=files/Strange_HypothesisLab.ipynb"
+        title="TwoQuarks • JupyterLite Lab">
+      </iframe>
+    </div>
+  </section>
+</main>
+
+<div class="footer">
+  © 2025 TwoQuarks • executable research playground.
+</div>
+
+<script>
+// starfield
+const canvas = document.getElementById('quantumField');
+const ctx = canvas.getContext('2d');
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+let particles=[];
+let count=520;
+for(let i=0;i<count;i++){
+  particles.push({
+    x:(Math.random()-0.5)*canvas.width,
+    y:(Math.random()-0.5)*canvas.height,
+    z:Math.random()*canvas.width,
+  });
+}
+
+function render(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    p.z -= 2.0;
+    if(p.z<1){
+      p.x=(Math.random()-0.5)*canvas.width;
+      p.y=(Math.random()-0.5)*canvas.height;
+      p.z=canvas.width;
+    }
+    let k=128/p.z;
+    let px=p.x*k+canvas.width/2;
+    let py=p.y*k+canvas.height/2;
+    let size=(1-p.z/canvas.width)*1.3;
+    ctx.beginPath();
+    ctx.fillStyle="rgba(140,180,255,0.85)";
+    ctx.arc(px,py,size,0,Math.PI*2);
+    ctx.fill();
+  }
+  requestAnimationFrame(render);
+}
+render();
+
+// mobile nav
+const menuBtn  = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    menuBtn.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.classList.remove('open');
+    });
+  });
+}
+
+// notebook selector -> JupyterLite iframe
+const nbList   = document.getElementById('nbList');
+const frame    = document.getElementById('jliteFrame');
+const baseLite = "/jupyterlite/lab/index.html";
+
+if (nbList && frame) {
+  nbList.querySelectorAll('.nb-item').forEach(item => {
+    item.addEventListener('click', () => {
+      nbList.querySelectorAll('.nb-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const path = item.getAttribute('data-path');
+      frame.src = `${baseLite}?path=${encodeURIComponent(path)}`;
+    });
+  });
+}
+</script>
+
+</body>
+</html>

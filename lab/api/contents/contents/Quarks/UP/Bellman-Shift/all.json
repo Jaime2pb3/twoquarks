@@ -1,0 +1,71 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.507987Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:29:52.199442Z",
+      "mimetype": "text/x-python",
+      "name": "bellman_shift_baseline.py",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift/bellman_shift_baseline.py",
+      "size": 8786,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.509990Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.515501Z",
+      "mimetype": null,
+      "name": "GRAPHICS",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift/GRAPHICS",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.517507Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-28T05:16:52.231341Z",
+      "mimetype": "text/markdown",
+      "name": "README.MD",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift/README.MD",
+      "size": 386,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.519577Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:33:20.149892Z",
+      "mimetype": "text/markdown",
+      "name": "README_BellmanShift.md",
+      "path": "contents\\Quarks\\UP\\Bellman-Shift/README_BellmanShift.md",
+      "size": 647,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.506989Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.519577Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\UP\\Bellman-Shift",
+  "path": "contents\\Quarks\\UP\\Bellman-Shift",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.546861Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.546861Z",
+      "mimetype": null,
+      "name": "edge-functions",
+      "path": "netlify/edge-functions",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.546861Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.546861Z",
+  "mimetype": null,
+  "name": "netlify",
+  "path": "netlify",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

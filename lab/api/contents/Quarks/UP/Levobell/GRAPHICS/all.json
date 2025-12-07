@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:32.026948Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:34:17.185813Z",
+      "mimetype": "image/png",
+      "name": "deltaQ_variance.png",
+      "path": "Quarks\\UP\\Levobell\\GRAPHICS/deltaQ_variance.png",
+      "size": 68617,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:32.037627Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T11:34:19.314602Z",
+      "mimetype": "image/png",
+      "name": "entropy_curve.png",
+      "path": "Quarks\\UP\\Levobell\\GRAPHICS/entropy_curve.png",
+      "size": 52865,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:32.047144Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-17T10:37:03.773606Z",
+      "mimetype": "image/png",
+      "name": "levobell_graphics.png",
+      "path": "Quarks\\UP\\Levobell\\GRAPHICS/levobell_graphics.png",
+      "size": 98091,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:32.019409Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:32.047144Z",
+  "mimetype": null,
+  "name": "Quarks\\UP\\Levobell\\GRAPHICS",
+  "path": "Quarks\\UP\\Levobell\\GRAPHICS",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

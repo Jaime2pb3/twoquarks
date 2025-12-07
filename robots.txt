@@ -1,0 +1,42 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Facebook external share crawler (case-insensitive)
+User-agent: facebookexternalhit
+Allow: /
+
+# Google AI training agent 
+User-agent: Google-Extended
+Allow: /
+
+# Regla general y orden
+User-agent: *
+Disallow: /netlify/
+Disallow: /.well-known/
+Allow: /.well-known/security.txt
+Disallow: /private/
+Crawl-delay: 15
+
+Sitemap: https://twoquarks.com/sitemap.xml
+

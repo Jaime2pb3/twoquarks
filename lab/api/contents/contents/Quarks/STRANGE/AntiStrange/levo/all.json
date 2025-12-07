@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.470154Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-03T09:27:36.953285Z",
+      "mimetype": "text/x-python",
+      "name": "antistrange_swarm.py",
+      "path": "contents\\Quarks\\STRANGE\\AntiStrange\\levo/antistrange_swarm.py",
+      "size": 10564,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.469155Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.470154Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\STRANGE\\AntiStrange\\levo",
+  "path": "contents\\Quarks\\STRANGE\\AntiStrange\\levo",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

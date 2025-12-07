@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.569589Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.641361Z",
+      "mimetype": null,
+      "name": "AntiCharm",
+      "path": "Quarks\\CHARM/AntiCharm",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.644490Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T09:04:31.719693Z",
+      "mimetype": null,
+      "name": "Charm",
+      "path": "Quarks\\CHARM/Charm",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.733340Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-04T08:50:51.188487Z",
+      "mimetype": "text/x-python",
+      "name": "charm_enchanted_valley.py",
+      "path": "Quarks\\CHARM/charm_enchanted_valley.py",
+      "size": 20467,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.569589Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.733340Z",
+  "mimetype": null,
+  "name": "Quarks\\CHARM",
+  "path": "Quarks\\CHARM",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

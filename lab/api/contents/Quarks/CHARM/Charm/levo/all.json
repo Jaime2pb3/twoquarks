@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.682793Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:10:20.310607Z",
+      "mimetype": "text/x-python",
+      "name": "charm_enchanted_valley.py",
+      "path": "Quarks\\CHARM\\Charm\\levo/charm_enchanted_valley.py",
+      "size": 20467,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.686311Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-05T08:10:20.312616Z",
+      "mimetype": "text/x-python",
+      "name": "policies.py",
+      "path": "Quarks\\CHARM\\Charm\\levo/policies.py",
+      "size": 3920,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.671170Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.686311Z",
+  "mimetype": null,
+  "name": "Quarks\\CHARM\\Charm\\levo",
+  "path": "Quarks\\CHARM\\Charm\\levo",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

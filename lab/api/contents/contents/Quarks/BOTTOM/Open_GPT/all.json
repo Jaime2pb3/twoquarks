@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.367882Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-20T11:34:26.912127Z",
+      "mimetype": "text/markdown",
+      "name": "README.MD",
+      "path": "contents\\Quarks\\BOTTOM\\Open_GPT/README.MD",
+      "size": 739,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-05T09:04:31.369890Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-11-20T11:35:26.166126Z",
+      "mimetype": "text/x-python",
+      "name": "router.py",
+      "path": "contents\\Quarks\\BOTTOM\\Open_GPT/router.py",
+      "size": 312,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-05T09:04:31.367882Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-05T09:04:31.369890Z",
+  "mimetype": null,
+  "name": "contents\\Quarks\\BOTTOM\\Open_GPT",
+  "path": "contents\\Quarks\\BOTTOM\\Open_GPT",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
