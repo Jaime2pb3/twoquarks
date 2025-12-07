@@ -1,37 +1,38 @@
 # Anti-CHARM v2
 
-Antiquark de CHARM para regularización contextual en entornos con
-"valles encantados" y ciclos de alto reward con bajo progreso.
+The Anti-CHARM antiquark for contextual regularization in environments with
+“enchanted valleys” and reward cycles with low progress.
 
-Este módulo está pensado como parte de la familia TwoQuarks:
+This module is part of the TwoQuarks family:
 
-- **CHARM**  → busca trayectorias eficientes hacia el objetivo.
-- **ANTI-CHARM** → vigila loops, valles engañosos y colapso de diversidad.
+- **CHARM** → seeks efficient trajectories toward the goal.
+- **ANTI-CHARM** → monitors loops, deceptive valleys, and diversity collapse.
 
-Anti-CHARM no reemplaza al actor principal; deforma el paisaje de decisión
-mediante una penalización de riesgo:
+Anti-CHARM does not replace the main actor; it reshapes the decision landscape
+via a risk penalty:
 
-```text
 Q_eff(s,a) = Q_charm(s,a) - lambda_t * P_anti(s,a)
-```
 
-donde `P_anti(s,a)` combina:
-- riesgo de loop estructural,
-- atracción a valles de reward sin progreso,
-- presión contextual (recompensa + visitas concentradas).
+where P_anti(s,a) combines:
 
-y `lambda_t` ajusta cuánto peso tiene Anti-CHARM según la temperatura actual
-del contexto (reward_density y diversidad).
+structural loop risk,
 
-## Archivos
+attraction to reward valleys without progress,
 
-- `anti_charm_agent.py` — implementación del agente Anti-CHARM v2.
-- `MODEL.md` — descripción matemática y de diseño del modelo.
-- `README.md` — este archivo.
+contextual pressure (concentrated reward + visitation),
 
-## Uso básico
+and lambda_t adjusts the relative weight of Anti-CHARM based on contextual
+temperature (reward density and diversity).
 
-```python
+Files
+
+anti_charm_agent.py — Anti-CHARM v2 implementation.
+
+MODEL.md — mathematical and design description.
+
+README.md — this file.
+
+Basic Usage:
 from anti_charm_agent import AntiCharmAgent, AntiCharmConfig
 
 cfg = AntiCharmConfig(
@@ -48,10 +49,10 @@ for episode in range(num_episodes):
     reward_history = []
 
     while not done:
-        # 1) Q-values del actor CHARM
-        Q_charm = charm.q_values(s)  # shape: (num_actions,)
+        # 1) Q-values from CHARM
+        Q_charm = charm.q_values(s)
 
-        # 2) stats de contexto (ej. desde el propio actor/entorno)
+        # 2) context stats (from actor/environment)
         stats = {
             "H_policy": float(charm.policy_entropy(s)),
             "temp": float(charm.temperature),
@@ -60,7 +61,7 @@ for episode in range(num_episodes):
             "step_norm": step / max(env.max_steps - 1, 1),
         }
 
-        # 3) penalizaciones Anti-CHARM
+        # 3) Anti-CHARM penalties
         P_anti, lambda_t = anti.penalty_vector(s, stats)
         Q_eff = Q_charm - lambda_t * P_anti
 
@@ -86,34 +87,39 @@ for episode in range(num_episodes):
         step += 1
 
     anti.end_episode()
-```
 
-### Suposiciones
+Assumptions
 
-- El entorno tiene **espacio de estados discreto y acotado** (p.ej. grid 7x7).
-- Existe una métrica de **progreso** hacia el objetivo (aunque sea heurística).
-- Se pueden estimar estadísticas como entropía de política y diversidad.
+The environment has a bounded discrete state space (e.g., a 7x7 grid).
 
-Si el número de estados supera `max_fw_states`, Anti-CHARM desactiva de forma
-segura el uso de Floyd–Warshall y se apoya únicamente en estadísticas locales.
+There exists a meaningful progress metric toward the goal.
 
-## Qué problemas busca mitigar
+Policy entropy and diversity statistics can be estimated.
 
-- Loops en regiones de alto reward que no llevan al objetivo.
-- Sesgos de "clímax contextual" donde la narrativa local domina la política.
-- Colapso de diversidad en las trayectorias (pérdida de alternativas sanas).
+If the number of states exceeds max_fw_states, Anti-CHARM safely disables
+Floyd–Warshall and relies solely on local statistics.
 
-En lugar de intentar detectar prompts "maliciosos", Anti-CHARM mide el efecto
-dinámico del contexto: **dónde se concentran las visitas y el reward** y cómo
-se deforma la política bajo esa presión.
+What It Mitigates
 
-## Limitaciones
+Loops in high-reward regions that make no progress toward the goal.
 
-- No es un mecanismo de seguridad absoluto.
-- Su desempeño depende de que las señales de progreso y diversidad estén
-  razonablemente bien definidas.
-- El uso de Floyd–Warshall es adecuado sólo para entornos con número moderado
-  de estados efectivos.
+Contextual “climax bias” where local narrative dominates the policy.
 
-Aun así, ofrece una base sólida y extensible para experimentar con antiquarks
-orientados a **mitigar valles encantados y sobre-optimización contextual**.
+Diversity collapse in agent trajectories.
+
+Rather than detecting malicious prompts, Anti-CHARM measures the dynamic effect
+of context: where visits and rewards concentrate and how that pressure
+deforms the policy.
+
+Limitations
+
+Anti-CHARM is not an absolute safety mechanism.
+
+Performance depends on reasonably defined progress and diversity signals.
+
+Floyd–Warshall is suitable only for environments with moderate state counts.
+
+Even so, it provides a solid and extensible baseline for experimenting with
+antiquark-style regulators aimed at mitigating enchanted valleys and
+contextual over-optimization.
+

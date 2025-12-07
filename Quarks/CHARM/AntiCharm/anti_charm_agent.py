@@ -9,22 +9,23 @@ Idea:
 where P_anti is a risk penalty that estimates:
     - loopiness (getting stuck in local cycles),
     - fake-valley attraction (high reward / low progress),
-    - contextual pressure (reward + repetition concentrated en una zona),
-  and lambda_t is a bounded gain that grows when the context "se calienta"
-  (reward concentrado, baja diversidad) y baja cuando el sistema está frío.
+    - contextual pressure (reward + repetition concentrated in one area),
+  and lambda_t is a bounded gain that grows when the context "heats up"
+  (concentrated reward, low diversity) and decays when the system is cold.
 
-Supone:
-    - Espacio de estados discreto y relativamente pequeño (p.ej. gridworlds).
-    - Progreso escalar en [0,1] (0 = lejos de la meta, 1 = meta).
-    - Stats básicos por paso: entropía de la política, temperatura, diversidad.
+Assumes:
+    - Discrete and relatively small state space (e.g., gridworlds).
+    - Scalar progress in [0,1] (0 = far from goal, 1 = goal).
+    - Basic per-step stats: policy entropy, temperature, diversity.
 
-Este módulo NO decide la acción óptima por sí solo.
-Deforma el paisaje de decisión para que el actor principal (CHARM)
-sea menos vulnerable a valles encantados y loops contextuales.
+This module does NOT decide the optimal action by itself.
+It deforms the decision landscape so that the main actor (CHARM)
+is less vulnerable to enchanted valleys and contextual loops.
 """
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple, Any, Optional
 
@@ -39,21 +40,21 @@ class AntiCharmConfig:
     num_states: int
     num_actions: int
 
-    # Pesos analíticos de la penalización base
-    alpha_loop: float = 1.0      # peso del riesgo de loop
-    beta_valley: float = 1.0     # peso de valles falsos
-    gamma_context: float = 0.5   # presión contextual
+    # Analytic weights for the base penalty
+    alpha_loop: float = 1.0      # loop risk weight
+    beta_valley: float = 1.0     # fake-valley weight
+    gamma_context: float = 0.5   # contextual pressure weight
 
-    # Objetivos globales
+    # Global targets
     diversity_target: float = 0.6
-    max_fw_states: int = 512          # límite duro para Floyd–Warshall
-    fw_interval_episodes: int = 5     # cada cuántos episodios refrescar el grafo
+    max_fw_states: int = 512          # hard cap for Floyd–Warshall
+    fw_interval_episodes: int = 5     # how often to refresh the graph
 
-    # Entrenamiento del calibrador de riesgo
+    # Risk calibrator training
     calib_lr: float = 1e-3
     weight_decay: float = 1e-3
 
-    # Rango de lambda (ganancia isomérica)
+    # Lambda range (isomeric gain)
     lambda_min: float = 0.05
     lambda_max: float = 0.95
 
@@ -62,9 +63,10 @@ class AntiCharmConfig:
 
 class RiskCalibrator(nn.Module):
     """
-    Pequeña red que ajusta la penalización base usando un target de riesgo explícito.
-    Entrada:  feature vector (6,)
-    Salida :  delta_penalty escalar
+    Small MLP that adjusts the base penalty using an explicit risk target.
+
+    Input : feature vector (6,)
+    Output: scalar delta_penalty
     """
     def __init__(self, in_dim: int = 6):
         super().__init__()
@@ -83,9 +85,9 @@ class RiskCalibrator(nn.Module):
 
 class AntiCharmAgent:
     """
-    Implementa el antiquark CHARM (ANTI-CHARM) como módulo de riesgo contextual.
+    Implements the CHARM anti-quark (ANTI-CHARM) as a contextual risk module.
 
-    Uso esperado (pseudocódigo):
+    Expected usage (pseudocode):
 
         anti = AntiCharmAgent(cfg)
 
@@ -94,10 +96,10 @@ class AntiCharmAgent:
             done = False
             step = 0
             while not done:
-                # 1) actor principal propone valores
+                # 1) main actor proposes values
                 Q_charm = charm.q_values(s)      # shape: (num_actions,)
 
-                # 2) Anti-Charm calcula penalizaciones por acción
+                # 2) Anti-Charm computes per-action penalties
                 stats = {...}  # H_policy, temp, diversity, reward_density, ...
                 P_anti, lambda_t = anti.penalty_vector(s, stats)  # shape: (num_actions,)
 
@@ -106,7 +108,7 @@ class AntiCharmAgent:
 
                 s_next, r, done, info = env.step(a)
 
-                # 3) registrar transición para Anti-Charm
+                # 3) log transition for Anti-Charm
                 anti.observe_step(
                     s=s, a=a, r=r, s_next=s_next,
                     progress=info.get("progress", 0.0),
@@ -132,21 +134,21 @@ class AntiCharmAgent:
         n_s = cfg.num_states
         n_a = cfg.num_actions
 
-        # Estadísticas de transiciones por arista (s,a,s')
+        # Per-edge transition statistics (s,a,s')
         self.edge_counts = np.zeros((n_s, n_a, n_s), dtype=np.int32)
         self.edge_reward = np.zeros((n_s, n_a, n_s), dtype=np.float32)
         self.edge_progress = np.zeros((n_s, n_a, n_s), dtype=np.float32)
         self.edge_steps = np.zeros((n_s, n_a, n_s), dtype=np.float32)
 
-        # Distancias para Floyd–Warshall (se calculan sobre un grafo colapsado s -> s')
+        # Distances for Floyd–Warshall (computed on collapsed graph s -> s')
         self.dist = np.full((n_s, n_s), np.inf, dtype=np.float32)
         np.fill_diagonal(self.dist, 0.0)
 
-        # Buffers de episodio
+        # Episode buffers
         self.current_episode_steps: List[Dict[str, Any]] = []
         self.episode_counter: int = 0
 
-        # Calibrador de riesgo
+        # Risk calibrator
         self.calibrator = RiskCalibrator(in_dim=6).to(self.device)
         self.opt_calib = AdamW(
             self.calibrator.parameters(),
@@ -155,7 +157,7 @@ class AntiCharmAgent:
         )
 
     # ------------------------------------------------------------------
-    #  MONITOREO ONLINE
+    #  ONLINE MONITORING
     # ------------------------------------------------------------------
     def observe_step(
         self,
@@ -172,12 +174,12 @@ class AntiCharmAgent:
         done: bool,
     ) -> None:
         """
-        Registrar una transición (s, a, r, s') junto con stats contextuales.
+        Register a transition (s, a, r, s') together with contextual stats.
         """
-        # actualizar stats de arista
+        # update edge statistics
         self._update_edge_stats(s, a, s_next, r, progress)
 
-        # buffer para entrenamiento episodico
+        # buffer for episode-level training
         self.current_episode_steps.append(
             dict(
                 s=s,
@@ -195,7 +197,7 @@ class AntiCharmAgent:
 
     def _update_edge_stats(self, s: int, a: int, s_next: int, r: float, progress: float) -> None:
         """
-        Acumula estadísticas para la arista (s, a, s_next).
+        Accumulate statistics for edge (s, a, s_next).
         """
         self.edge_counts[s, a, s_next] += 1
         self.edge_reward[s, a, s_next] += float(r)
@@ -203,17 +205,17 @@ class AntiCharmAgent:
         self.edge_steps[s, a, s_next] += 1.0
 
     # ------------------------------------------------------------------
-    #  PENALIZACIÓN ONLINE
+    #  ONLINE PENALTY
     # ------------------------------------------------------------------
     def penalty_vector(self, s: int, stats: Dict[str, float]) -> Tuple[np.ndarray, float]:
         """
-        Devuelve el vector de penalizaciones P_anti(s, a) para todas las acciones
-        y el lambda_t actual. No altera pesos ni entrena nada.
+        Returns the penalty vector P_anti(s, a) for all actions and the current
+        lambda_t. Does not update any parameters.
         """
         n_a = self.cfg.num_actions
         p_vec = np.zeros((n_a,), dtype=np.float32)
 
-        # calcular lambda_t a partir de stats de contexto global
+        # compute lambda_t from global contextual stats
         lambda_t = self._compute_lambda_analytic(stats)
 
         for a in range(n_a):
@@ -223,14 +225,14 @@ class AntiCharmAgent:
 
     def _penalty_single_action(self, s: int, a: int, stats: Dict[str, float]) -> float:
         """
-        Penalización total para una acción específica en un estado dado.
-        Se compone de:
-            P_anti = P_base + delta_calib
+        Total penalty for a specific action in a given state.
+
+        P_anti = P_base + delta_calib
         """
-        # base analítica
+        # analytic base
         p_base, features = self._compute_penalty_base(s, a)
 
-        # features para el calibrador de riesgo
+        # features for the risk calibrator
         feat_vec = np.array(
             [
                 p_base,
@@ -249,20 +251,20 @@ class AntiCharmAgent:
         return float(p_base + delta)
 
     # ------------------------------------------------------------------
-    #  CÁLCULO DE P_base
+    #  BASE PENALTY P_base
     # ------------------------------------------------------------------
     def _refresh_distances_if_needed(self) -> None:
         """
-        Corre Floyd–Warshall sobre el grafo colapsado s->s' si:
-          - el número de estados es razonable
-          - han pasado suficientes episodios
+        Runs Floyd–Warshall on the collapsed graph s->s' if:
+          - the number of states is manageable, and
+          - enough episodes have passed.
         """
         cfg = self.cfg
         if cfg.num_states > cfg.max_fw_states:
-            # grafo demasiado grande: dist se queda como identidades / inf
+            # graph too large: keep dist as identity / inf
             return
 
-        # construir matriz de costos por transición (s -> s')
+        # build transition cost matrix (s -> s')
         n_s = cfg.num_states
         cost = np.full((n_s, n_s), np.inf, dtype=np.float32)
         np.fill_diagonal(cost, 0.0)
@@ -272,17 +274,16 @@ class AntiCharmAgent:
                 counts_sa = self.edge_counts[s, :, sp].sum()
                 if counts_sa == 0:
                     continue
-                # reward medio y progreso medio desde s hasta sp
                 mean_r = self.edge_reward[s, :, sp].sum() / max(counts_sa, 1)
                 mean_prog = self.edge_progress[s, :, sp].sum() / max(counts_sa, 1)
 
-                # costo: 1 paso + penalización por reward "sospechosamente alto"
-                # con poco progreso (valles encantados)
+                # cost: 1 step + penalty for "suspiciously high" reward
+                # with low progress (enchanted valleys)
                 valley_term = max(0.0, mean_r - mean_prog)
                 step_cost = 1.0 + valley_term
                 cost[s, sp] = min(cost[s, sp], step_cost)
 
-        # Floyd–Warshall clásico
+        # classic Floyd–Warshall
         dist = cost.copy()
         for k in range(n_s):
             dist = np.minimum(dist, dist[:, k:k+1] + dist[k:k+1, :])
@@ -291,25 +292,24 @@ class AntiCharmAgent:
 
     def _compute_penalty_base(self, s: int, a: int) -> Tuple[float, Dict[str, float]]:
         """
-        Combina tres componentes:
+        Combines three components:
 
-            - loop_risk(s):  ciclos cortos s -> ... -> s con costo bajo.
-            - valley_score(s,a): reward alto / progreso bajo.
-            - context_pressure(s): reward + visitas acumuladas alrededor de s.
+            - loop_risk(s):  short cycles s -> ... -> s with low cost.
+            - valley_score(s,a): high reward / low progress.
+            - context_pressure(s): accumulated reward + visits around s.
 
-        Se normaliza con tanh para evitar explosiones.
+        Output is passed through tanh to avoid explosions.
         """
         cfg = self.cfg
 
-        # riesgo de loop: buscamos el ciclo más barato que empieza y termina en s
-        # (si no hay ciclo observado, esto será grande).
+        # loop risk: cheapest observed cycle starting and ending at s
         loop_cost = float(self.dist[s, s])
-        loop_risk = math.tanh(loop_cost / 10.0)  # normalización suave
+        loop_risk = math.tanh(loop_cost / 10.0)  # soft normalization
 
-        # stats de la arista específica (s,a,*)
+        # stats for the specific edge (s,a,*)
         counts = self.edge_counts[s, a, :].sum()
         if counts == 0:
-            # sin datos: penalización suave pero no infinita
+            # no data: mild but non-infinite penalty
             valley_score = 0.1
             context_pressure = 0.1
         else:
@@ -342,50 +342,51 @@ class AntiCharmAgent:
         return float(p_base), features
 
     # ------------------------------------------------------------------
-    #  LAMBDA ANALÍTICO
+    #  ANALYTIC LAMBDA
     # ------------------------------------------------------------------
     def _compute_lambda_analytic(self, stats: Dict[str, float]) -> float:
         """
-        Calcula lambda_t sin aprendizaje opaco, solo a partir de stats globales:
+        Computes lambda_t analytically from global stats:
 
-            - Subirá cuando haya:
-                * reward_density alto,
-                * diversidad baja.
+            - Increases when:
+                * reward_density is high,
+                * diversity is low.
 
-            - Bajará cuando el sistema esté variado y frío.
+            - Decreases when the system is varied and cold.
         """
         cfg = self.cfg
 
         reward_density = stats.get("reward_density", 0.0)
         diversity = stats.get("diversity", 0.0)
 
-        # normalización suave
+        # smooth normalization
         r_term = math.tanh(reward_density)
         d_term = (cfg.diversity_target - diversity)
 
-        # score en [-1, 1] aprox.
+        # approximate score in [-1, 1]
         raw = r_term + d_term
         score = max(-1.0, min(1.0, raw))
 
-        # mapear a [lambda_min, lambda_max]
+        # map to [lambda_min, lambda_max]
         mid = (cfg.lambda_min + cfg.lambda_max) / 2.0
         span = (cfg.lambda_max - cfg.lambda_min) / 2.0
         lam = mid + span * score
         return float(max(cfg.lambda_min, min(cfg.lambda_max, lam)))
 
     # ------------------------------------------------------------------
-    #  ENTRENAMIENTO EPISÓDICO DEL CALIBRADOR
+    #  EPISODIC TRAINING OF THE CALIBRATOR
     # ------------------------------------------------------------------
     def end_episode(self) -> None:
         """
-        Debe llamarse al final de cada episodio.
-        - Actualiza el grafo (cada cierto número de episodios).
-        - Entrena el calibrador de riesgo con un target explícito.
+        Must be called at the end of each episode.
 
-        El target de riesgo del episodio mezcla:
-            - loop_rate       (número de estados repetidos / pasos)
-            - diversity_gap   (diversidad objetivo - diversidad real, si es positivo)
-            - reward_collapse (std alto de reward relativo al rango)
+        - Updates the graph (at a given episode interval).
+        - Trains the risk calibrator towards an explicit risk target.
+
+        Episode-level risk target mixes:
+            - loop_rate       (repeated states / steps)
+            - diversity_gap   (target diversity - actual diversity, if positive)
+            - reward_collapse (high reward std relative to its magnitude)
         """
         if not self.current_episode_steps:
             return
@@ -402,21 +403,21 @@ class AntiCharmAgent:
         unique_states = len(set(states))
         diversity_ep = unique_states / max(num_steps, 1)
 
-        # tasa de repetición de estados (loop_rate)
+        # state repetition rate (loop_rate)
         loop_rate = 1.0 - diversity_ep
 
-        # gap respecto al objetivo de diversidad
+        # gap vs. diversity target
         diversity_gap = max(0.0, self.cfg.diversity_target - diversity_ep)
 
-        # colapso de reward: std alta en relación a media
+        # reward collapse: std relative to mean magnitude
         mean_r = float(np.mean(rewards)) if num_steps > 0 else 0.0
         std_r = float(np.std(rewards)) if num_steps > 0 else 0.0
         reward_collapse = std_r / (abs(mean_r) + 1e-6)
 
-        # riesgo global del episodio (bounded)
+        # global risk label for the episode (bounded)
         risk_label = math.tanh(loop_rate + diversity_gap + reward_collapse)
 
-        # batch para el calibrador
+        # batch for the calibrator
         X_list: List[np.ndarray] = []
         Y_list: List[float] = []
 
@@ -439,16 +440,16 @@ class AntiCharmAgent:
         X = torch.tensor(np.stack(X_list, axis=0), device=self.device)
         y = torch.tensor(np.array(Y_list, dtype=np.float32), device=self.device)
 
-        # entrenamiento simple de regresión
+        # simple regression training
         self.opt_calib.zero_grad()
         pred = self.calibrator(X)
         loss = ((pred - y) ** 2).mean()
         loss.backward()
         self.opt_calib.step()
 
-        # refrescar distancias del grafo cada cierto número de episodios
+        # refresh graph distances every few episodes
         if self.episode_counter % self.cfg.fw_interval_episodes == 0:
             self._refresh_distances_if_needed()
 
-        # limpiar buffer
+        # clear buffer
         self.current_episode_steps = []

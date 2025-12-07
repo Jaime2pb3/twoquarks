@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TwoQuarks • Quark´s Lab</title>
+<title>TwoQuarks • Quark's Lab</title>
 
 <style>
 /* -------- RESET -------- */
@@ -28,7 +28,7 @@ body{
   z-index:-10; background:#000;
 }
 
-/* - NAV - (idéntico al index) */
+/* - NAV - */
 nav{
   position:fixed; top:0; left:0; right:0;
   z-index:1000;
@@ -135,7 +135,7 @@ nav{
   margin:0 auto;
   padding:96px 6vw 48px;
   display:grid;
-  grid-template-columns:minmax(260px,320px) minmax(0,1fr);
+  grid-template-columns:minmax(220px,260px) minmax(0,1fr);
   gap:26px;
 }
 
@@ -154,16 +154,21 @@ nav{
 .nb-list{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:10px;
 }
 .nb-item{
   border:1px solid var(--stroke);
   background:var(--card);
   backdrop-filter:blur(8px);
   border-radius:14px;
-  padding:12px 14px;
+  padding:10px 12px;
   cursor:pointer;
   transition:.25s ease;
+  font-size:.95rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 .nb-item:hover{
   background:var(--card2);
@@ -174,21 +179,41 @@ nav{
   box-shadow:0 0 0 1px rgba(140,180,255,.35) inset;
   background:rgba(140,180,255,.06);
 }
-.nb-tag{
-  font-size:.78rem;
-  letter-spacing:.16em;
+
+.nb-meta{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.nb-label{
+  font-size:.8rem;
   text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:4px;
+  letter-spacing:.16em;
+  opacity:.7;
 }
 .nb-title{
-  font-size:.98rem;
+  font-size:.96rem;
   font-weight:500;
-  margin-bottom:2px;
 }
-.nb-meta{
-  font-size:.86rem;
-  opacity:.7;
+
+/* botón Colab por modelo */
+.nb-colab{
+  font-size:.78rem;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);
+  text-decoration:none;
+  color:var(--fg);
+  opacity:.9;
+  transition:.15s ease;
+  white-space:nowrap;
+}
+.nb-colab:hover{background:rgba(255,255,255,.14);}
+.nb-colab.disabled{
+  opacity:.35;
+  pointer-events:none;
+  border-style:dashed;
 }
 
 /* iframe */
@@ -245,7 +270,7 @@ nav{
       <span></span>
     </div>
 
-    <!-- Main links (mismos que index, pero apuntan al index) -->
+    <!-- Main links (back to sections in index) -->
     <div class="nav-links" id="navLinks">
       <a href="index.html#down">DOWN</a>
       <a href="index.html#strange">STRANGE</a>
@@ -256,7 +281,7 @@ nav{
     </div>
 
     <!-- Spacer -->
-    <div className="spacer-nav spacer-nav"></div>
+    <div class="spacer-nav"></div>
 
     <!-- CTA buttons -->
     <div class="cta-wrapper">
@@ -276,96 +301,96 @@ nav{
     <div class="nb-list" id="nbList">
       <!-- STRANGE FAMILY -->
       <div class="nb-item active"
-           data-path="contents/Quarks/STRANGE/Strange/notebooks/Strange_HypothesisLab.ipynb">
-        <div class="nb-tag">Flavor Strange</div>
-        <div class="nb-title">Strange Hypothesis Lab</div>
+           data-path="contents/Quarks/STRANGE/Strange/notebooks/Strange_HypothesisLab.ipynb"
+           data-colab="contents/Quarks/STRANGE/Strange/notebooks/Strange_HypothesisLab.ipynb">
         <div class="nb-meta">
-          Multi-agent Q-tabular swarm with temperature gate T for phase-transition analysis.
+          <span class="nb-label">STRANGE</span>
+          <span class="nb-title">Strange</span>
         </div>
+        <a class="nb-colab" href="#" target="_blank" rel="noopener noreferrer">Open in Colab</a>
       </div>
 
       <div class="nb-item"
-           data-path="contents/Quarks/STRANGE/AntiStrange/notebooks/antistrange_HypotesisLab.ipynb">
-        <div class="nb-tag">Flavor AntiStrange</div>
-        <div class="nb-title">AntiStrange Hypothesis Lab</div>
+           data-path="contents/Quarks/STRANGE/AntiStrange/notebooks/antistrange_HypotesisLab.ipynb"
+           data-colab="contents/Quarks/STRANGE/AntiStrange/notebooks/antistrange_HypotesisLab.ipynb">
         <div class="nb-meta">
-          Conjugate dynamics in low-T regime, tracking latent potential and stability zones.
+          <span class="nb-label">STRANGE</span>
+          <span class="nb-title">AntiStrange</span>
         </div>
-      </div>
-
-      <div class="nb-item"
-           data-path="#">
-        <div class="nb-tag">Dual Strange • soon</div>
-        <div class="nb-title">Coupled phase dynamics</div>
-        <div class="nb-meta">
-          Planned joint Strange ⊕ AntiStrange run for interference and control fingerprints.
-        </div>
+        <a class="nb-colab" href="#" target="_blank" rel="noopener noreferrer">Open in Colab</a>
       </div>
 
       <!-- CHARM FAMILY -->
       <div class="nb-item"
-           data-path="contents/Quarks/CHARM/Charm/notebooks/Charm_EnchantedValley_core.ipynb">
-        <div class="nb-tag">Flavor Charm</div>
-        <div class="nb-title">Charm • Enchanted Valley</div>
+           data-path="contents/Quarks/CHARM/Charm/notebooks/Charm_EnchantedValley_core.ipynb"
+           data-colab="contents/Quarks/CHARM/Charm/notebooks/Charm_EnchantedValley_core.ipynb">
         <div class="nb-meta">
-          Single-agent policy navigating a structured valley; graceful degradation and recovery.
+          <span class="nb-label">CHARM</span>
+          <span class="nb-title">Charm</span>
         </div>
+        <a class="nb-colab" href="#" target="_blank" rel="noopener noreferrer">Open in Colab</a>
       </div>
 
       <div class="nb-item"
-           data-path="contents/Quarks/CHARM/AntiCharm/notebooks/AntiCharm_gridworld_demo.ipynb">
-        <div class="nb-tag">Flavor AntiCharm</div>
-        <div class="nb-title">AntiCharm Gridworld</div>
+           data-path="contents/Quarks/CHARM/AntiCharm/notebooks/AntiCharm_gridworld_demo.ipynb"
+           data-colab="contents/Quarks/CHARM/AntiCharm/notebooks/AntiCharm_gridworld_demo.ipynb">
         <div class="nb-meta">
-          Contrastive runs between constructive navigation and adversarial behavior on gridworld.
+          <span class="nb-label">CHARM</span>
+          <span class="nb-title">AntiCharm</span>
         </div>
+        <a class="nb-colab" href="#" target="_blank" rel="noopener noreferrer">Open in Colab</a>
       </div>
 
       <!-- DOWN -->
       <div class="nb-item"
-           data-path="contents/Quarks/DOWN/Levo-HF/notebooks/01_sanity_tabular.ipynb">
-        <div class="nb-tag">Flavor Down</div>
-        <div class="nb-title">Levo-HF • Tabular sanity</div>
+           data-path="contents/Quarks/DOWN/Levo-HF/notebooks/01_sanity_tabular.ipynb"
+           data-colab="contents/Quarks/DOWN/Levo-HF/notebooks/01_sanity_tabular.ipynb">
         <div class="nb-meta">
-          Minimal Levo-HF baseline; convergence, entropy decay and HF-perturbed updates.
+          <span class="nb-label">DOWN</span>
+          <span class="nb-title">Levo-HF</span>
         </div>
+        <a class="nb-colab" href="#" target="_blank" rel="noopener noreferrer">Open in Colab</a>
+      </div>
+
+      <!-- placeholders -->
+      <div class="nb-item"
+           data-path="#"
+           data-colab="#">
+        <div class="nb-meta">
+          <span class="nb-label">DOWN</span>
+          <span class="nb-title">Paradox Isomer (soon)</span>
+        </div>
+        <a class="nb-colab disabled" href="#">Soon</a>
       </div>
 
       <div class="nb-item"
-           data-path="#">
-        <div class="nb-tag">Down • Paradox • soon</div>
-        <div class="nb-title">Levo Paradox Isomer</div>
+           data-path="#"
+           data-colab="#">
         <div class="nb-meta">
-          Slot reserved for paradox environment exploring symmetry-breaking and policy isomers.
+          <span class="nb-label">UP</span>
+          <span class="nb-title">Up (soon)</span>
         </div>
-      </div>
-
-      <!-- UP / TOP / BOTTOM PLACEHOLDERS -->
-      <div class="nb-item"
-           data-path="#">
-        <div class="nb-tag">Flavor Up • soon</div>
-        <div class="nb-title">Up • Baseline control fields</div>
-        <div class="nb-meta">
-          Reserved for primary control-field baselines (tabular + function approximation).
-        </div>
+        <a class="nb-colab disabled" href="#">Soon</a>
       </div>
 
       <div class="nb-item"
-           data-path="#">
-        <div class="nb-tag">Flavor Top • soon</div>
-        <div class="nb-title">Top • High-energy policies</div>
+           data-path="#"
+           data-colab="#">
         <div class="nb-meta">
-          Slot for high-capacity policies and heavy regularization experiments.
+          <span class="nb-label">TOP</span>
+          <span class="nb-title">Top (soon)</span>
         </div>
+        <a class="nb-colab disabled" href="#">Soon</a>
       </div>
 
       <div class="nb-item"
-           data-path="#">
-        <div class="nb-tag">Flavor Bottom • soon</div>
-        <div class="nb-title">Bottom • Open-World GPT interface</div>
+           data-path="#"
+           data-colab="#">
         <div class="nb-meta">
-          Bridge between quark models and language tooling; will host Bottom notebooks.
+          <span class="nb-label">BOTTOM</span>
+          <span class="nb-title">Bottom (soon)</span>
         </div>
+        <a class="nb-colab disabled" href="#">Soon</a>
       </div>
     </div>
   </section>
@@ -387,7 +412,7 @@ nav{
   © 2025 TwoQuarks • executable research playground.
 </div>
 
-<!-- STARFIELD SCRIPT (igual que index) -->
+<!-- STARFIELD SCRIPT -->
 <script>
 const canvas = document.getElementById('quantumField');
 const ctx = canvas.getContext('2d');
@@ -457,27 +482,53 @@ if (menuBtn && navLinks) {
 }
 </script>
 
-<!-- NOTEBOOK SELECTOR -> JUPYTERLITE IFRAME -->
+<!-- NOTEBOOK SELECTOR + COLAB LINKS -->
 <script>
-const nbList  = document.getElementById('nbList');
-const frame   = document.getElementById('jliteFrame');
-const baseLite = "lab/index.html";
+const nbList   = document.getElementById('nbList');
+const frame    = document.getElementById('jliteFrame');
 
-if (nbList && frame) {
+const baseLite  = "lab/index.html";
+const colabBase = "https://colab.research.google.com/github/Jaime2pb3/twoquarks/blob/main/";
+
+function setNotebook(path){
+  if (path && path !== "#"){
+    frame.src = `${baseLite}?path=${encodeURIComponent(path)}`;
+  }
+}
+
+if (nbList && frame){
   nbList.querySelectorAll('.nb-item').forEach(item => {
+    const path      = item.getAttribute('data-path');
+    const colabPath = item.getAttribute('data-colab');
+    const colabLink = item.querySelector('.nb-colab');
+
+    // Configurar link de Colab
+    if (colabLink && !colabLink.classList.contains('disabled')){
+      if (colabPath && colabPath !== "#"){
+        colabLink.href = colabBase + colabPath;
+      } else {
+        colabLink.classList.add('disabled');
+        colabLink.textContent = "Soon";
+      }
+      // que el click en el botón no dispare el cambio de notebook
+      colabLink.addEventListener('click', e => e.stopPropagation());
+    }
+
+    // Click en la tarjeta -> cambiar notebook
     item.addEventListener('click', () => {
       nbList.querySelectorAll('.nb-item').forEach(i => i.classList.remove('active'));
       item.classList.add('active');
-
-      const path = item.getAttribute('data-path');
-      if (path && path !== '#') {
-        frame.src = `${baseLite}?path=${encodeURIComponent(path)}`;
-      }
+      setNotebook(path);
     });
   });
+
+  // inicial
+  const active = nbList.querySelector('.nb-item.active');
+  if (active){
+    setNotebook(active.getAttribute('data-path'));
+  }
 }
 </script>
 
 </body>
 </html>
-

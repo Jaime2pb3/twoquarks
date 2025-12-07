@@ -1,79 +1,87 @@
 # Anti-CHARM v2 — Contextual Risk Regularizer
 
-## 1. Rol dentro de la arquitectura Quarks
+## 1. Role within the Quarks Architecture
 
-Anti-CHARM es el antiquark del módulo CHARM. No busca la recompensa directa,
-sino **limitar el efecto de valles encantados y ciclos contextuales** que pueden
-sobrepasar las políticas de alineamiento de un agente principal.
+Anti-CHARM is the antiquark of the CHARM module. It does not seek to optimize
+reward directly; its purpose is to **limit the effect of enchanted valleys and
+contextual cycles** that can overpower the alignment mechanisms of a main agent.
 
-La decisión efectiva se realiza con:
+The effective decision is computed as:
 
 \[
 Q_{\text{eff}}(s,a) = Q_{\text{charm}}(s,a) - \lambda_t \cdot P_{\text{anti}}(s,a)
 \]
 
-donde:
+where:
 
-- `Q_charm(s,a)`: valor propuesto por el actor “enamorado” (ruta más corta, reward).
-- `P_anti(s,a)`: penalización de riesgo contextual estimada por Anti-CHARM.
-- `\lambda_t`: ganancia isomérica dinámica, en el rango `[lambda_min, lambda_max]`.
+- `Q_charm(s,a)`: value proposed by the “enchanted” actor (short path / reward).
+- `P_anti(s,a)`: contextual risk penalty estimated by Anti-CHARM.
+- `\lambda_t`: dynamic isomeric gain in the range `[lambda_min, lambda_max]`.
 
-Cuando el contexto se "calienta" (recompensas concentradas, baja diversidad),
-`\lambda_t` aumenta y Anti-CHARM tiene más peso. En entornos fríos y variados,
-`\lambda_t` baja y CHARM domina.
+When the context “heats up” (concentrated reward, low diversity),
+`\lambda_t` increases and Anti-CHARM gains influence. In cold and varied
+contexts, `\lambda_t` decreases and CHARM dominates.
 
-## 2. Componentes de riesgo
+---
 
-Anti-CHARM descompone el riesgo en tres términos analíticos:
+## 2. Risk Components
 
-1. **Riesgo de ciclo (`loop_risk`)**
+Anti-CHARM decomposes risk into three analytic terms:
 
-   Se construye un grafo de estados usando las transiciones observadas en el entorno.
-   Sobre ese grafo se ejecuta Floyd–Warshall para estimar el coste mínimo de volver
-   al mismo estado `s` tras recorrer cualquier camino:
+### 2.1 Loop Risk (`loop_risk`)
 
-   \[
-   loop\_cost(s) = dist(s,s)
-   \]
+A state graph is constructed from observed transitions.
+Floyd–Warshall is applied on this graph to estimate the minimum cost of
+returning to the same state `s`:
 
-   Este coste se normaliza con una `tanh` para evitar explosiones:
+\[
+loop\_cost(s) = dist(s,s)
+\]
 
-   \[
-   loop\_risk(s) = \tanh\left( \frac{loop\_cost(s)}{10} \right)
-   \]
+This cost is normalized via `tanh`:
 
-   Si en el grafo se observan ciclos cortos con coste bajo, el riesgo aumenta.
+\[
+loop\_risk(s) = \tanh\left( \frac{loop\_cost(s)}{10} \right)
+\]
 
-2. **Puntaje de valle (`valley_score`)**
+Short, low-cost cycles result in higher risk.
 
-   Para cada arista agregada `(s, a, s')` se lleva una estadística de:
+---
 
-   - recompensa media `\bar r(s,a)`,
-   - progreso medio hacia la meta `\bar p(s,a)`.
+### 2.2 Valley Score (`valley_score`)
 
-   El valle encantado se caracteriza por **recompresas altas con poco avance**:
+For each aggregated edge `(s, a, s')`, statistics are kept for:
 
-   \[
-   valley\_{raw}(s,a) = \max(0, \bar r(s,a) - \bar p(s,a))
-   \]
+- mean reward `\bar r(s,a)`,
+- mean progress toward the goal `\bar p(s,a)`.
 
-   Se normaliza también con `tanh`:
+Enchanted valleys correspond to **high reward with low progress**:
 
-   \[
-   valley\_score(s,a) = \tanh(valley\_{raw}(s,a))
-   \]
+\[
+valley\_{raw}(s,a) = \max(0, \bar r(s,a) - \bar p(s,a))
+\]
 
-3. **Presión contextual (`context_pressure`)**
+Normalized:
 
-   Mide cuánto reward y cuántas visitas se concentran en la vecindad de `s`:
+\[
+valley\_score(s,a) = \tanh(valley\_{raw}(s,a))
+\]
 
-   \[
-   context\_pressure(s) = \tanh\Bigg(
-       \frac{\sum_{a,s'} R(s,a,s')}{\sum_{a,s'} N(s,a,s') + \epsilon}
-   \Bigg)
-   \]
+---
 
-La penalización base se define como combinación lineal:
+### 2.3 Context Pressure (`context_pressure`)
+
+Measures reward and visitation concentration around state `s`:
+
+\[
+context\_pressure(s) = \tanh\Bigg(
+    \frac{\sum_{a,s'} R(s,a,s')}{\sum_{a,s'} N(s,a,s') + \epsilon}
+\Bigg)
+\]
+
+---
+
+### 2.4 Base Penalty
 
 \[
 P_{\text{base}}(s,a) =
@@ -82,136 +90,130 @@ P_{\text{base}}(s,a) =
     \gamma_{context}\,context\_pressure(s)
 \]
 
-con pesos `alpha_loop`, `beta_valley` y `gamma_context` configurables.
+with configurable weights `alpha_loop`, `beta_valley`, and `gamma_context`.
 
-## 3. Calibrador de riesgo aprendido
+---
 
-La penalización base captura estructura global, pero puede ser rígida. Para
-adaptarse al entorno real, Anti-CHARM incluye un pequeño **calibrador de riesgo**
-`RiskCalibrator`, entrenado mediante regresión supervisada.
+## 3. Learned Risk Calibrator
 
-Entrada del calibrador por paso:
+To avoid rigidity in the analytic penalty, Anti-CHARM includes a small
+supervised **risk calibrator** `RiskCalibrator`.
 
-- `p_base`          – penalización base analítica.
-- `step_norm`       – paso normalizado dentro del episodio.
-- `H_policy`        – entropía de la política (exploración / determinismo).
-- `temp`            – temperatura efectiva del actor.
-- `diversity`       – diversidad interna de acciones / trayectorias.
-- `mean_reward_ep`  – recompensa media del episodio.
+Per-step input features:
 
-Salida:
+- `p_base` — analytic base penalty.
+- `step_norm` — normalized step index.
+- `H_policy` — policy entropy.
+- `temp` — effective temperature.
+- `diversity` — trajectory/action diversity.
+- `mean_reward_ep` — episode mean reward.
 
-- `delta_penalty` – ajuste escalar que corrige la penalización base.
+Output:
 
-Penalización final:
+- `delta_penalty` — scalar correction to the base risk.
+
+Final penalty:
 
 \[
 P_{\text{anti}}(s,a) = P_{\text{base}}(s,a) + \Delta P_{\theta}(s,a)
 \]
 
-donde `\Delta P_\theta` es la salida del calibrador.
+---
 
-### 3.1. Target explícito de riesgo
+### 3.1 Explicit Risk Target
 
-En cada episodio se definen métricas globales:
+For each episode:
 
-- **Diversidad del episodio**  
-  \(diversity\_ep = \frac{|\{s_t\}|}{T}\).
+- **Episode diversity**  
+  \(diversity\_{ep} = \frac{|\{s_t\}|}{T}\).
 
-- **loop_rate**  
-  \(loop\_rate = 1 - diversity\_ep\).
+- **Loop rate**  
+  \(loop\_rate = 1 - diversity\_{ep}\).
 
-- **diversity_gap**  
-  diferencia positiva respecto a una diversidad objetivo `diversity_target`.
+- **Diversity gap**  
+  positive difference from `diversity_target`.
 
-- **reward_collapse**  
-  \(reward\_collapse = \frac{\sigma(r_t)}{|\bar r_t| + \epsilon}\).
+- **Reward collapse**  
+  \(reward\_collapse =
+     \frac{\sigma(r_t)}{|\bar r_t| + \epsilon}\).
 
-El **target de riesgo** del episodio es:
+The **risk label** is:
 
 \[
 risk\_label = \tanh(loop\_rate + diversity\_gap + reward\_collapse)
 \]
 
-Ese valor se asigna como etiqueta `y` para todos los pasos del episodio y el
-calibrador se entrena por MSE:
+This label is used as the regression target:
 
 \[
 \mathcal{L} = \mathbb{E}[(\Delta P_\theta - risk\_label)^2]
 \]
 
-Con esto, el calibrador aprende a aumentar la penalización cuando el episodio
-exhibe loops, baja diversidad o colapso de reward, sin depender de heurísticas
-opacas.
+The calibrator therefore adapts penalties when loops, low diversity, or reward
+collapse states are detected.
 
-## 4. Ganancia isomérica analítica \(\lambda_t\)
+---
 
-Para evitar una ganancia arbitraria, `\lambda_t` se calcula de forma analítica
-usando sólo dos señales globales:
+## 4. Analytic Isomeric Gain λ_t
 
-- densidad de recompensa `reward_density`,
-- diversidad actual `diversity`.
+\(\lambda_t\) is computed analytically from two global signals:
 
-Primero se construye un score en aproximadamente `[-1, 1]`:
+- reward density `reward_density`,
+- current `diversity`.
+
+Score:
 
 \[
 score = \tanh(reward\_density) + (diversity\_{target} - diversity)
 \]
 
-Este score se satura a `[-1,1]` y luego se mapea al intervalo
-`[lambda_min, lambda_max]`:
+Saturated to `[-1,1]` and mapped to `[lambda_min, lambda_max]`:
 
 \[
-\lambda_t = mid + span \cdot score,
+\lambda_t = mid + span \cdot score
 \]
 
-donde `mid = (lambda_min + lambda_max)/2` y `span` es la mitad del rango.
+Result:
 
-Resultado:
+- Hot, low-diversity contexts ⟹ `\lambda_t` approaches `lambda_max`.
+- Cold, diverse contexts ⟹ `\lambda_t` approaches `lambda_min`.
 
-- Contextos calientes y poco diversos ⟹ `\lambda_t` se acerca a `lambda_max`.
-- Contextos fríos y diversos      ⟹ `\lambda_t` se acerca a `lambda_min`.
+This procedure is transparent and stable by design.
 
-No hay entrenamiento oculto ni meta-aprendizaje inestable; el comportamiento
-es interpretable y controlable por diseño.
+---
 
-## 5. Puntos débiles y mitigaciones
+## 5. Weak Points and Mitigations
 
-1. **Complejidad de Floyd–Warshall O(n³)**  
-   - Mitigación: se limita el número máximo de estados (`max_fw_states`) y sólo
-     se ejecuta cada cierto número de episodios (`fw_interval_episodes`). El uso
-     recomendado es en entornos discretos pequeños (p.ej. hasta unos cientos de
-     estados efectivos).
+1. **Floyd–Warshall complexity O(n³)**  
+   - Mitigation: `max_fw_states` and sparse refresh scheduling
+     (`fw_interval_episodes`).
 
-2. **Estados sin datos suficientes**  
-   - Mitigación: para `(s,a)` sin historial, se usa una penalización suave y se
-     mantiene `context_pressure` cercano a cero. Esto evita castigos
-     desproporcionados por simple falta de observación.
+2. **Insufficient data states**  
+   - Mitigation: mild default penalties and near-zero context pressure prevent
+     disproportionate punishment.
 
-3. **Sobrepenalización (agente demasiado paranoico)**  
-   - Mitigación: las contribuciones de riesgo se pasan por `tanh`, de forma que
-     estén acotadas. Además, los pesos `alpha_loop`, `beta_valley` y
-     `gamma_context` son configurables y pueden ajustarse empíricamente.
+3. **Over-penalization (excessive paranoia)**  
+   - Mitigation: risk terms are bounded by `tanh`, and risk weights are
+     configurable.
 
-4. **Etiquetas de riesgo demasiado gruesas**  
-   - Mitigación: aunque el risk_label se calcula a nivel de episodio, cada paso
-     incluye `p_base`, `step_norm`, `diversity` y el resto de features, lo que
-     permite que el calibrador aprenda patrones intra-episodio sin necesidad de
-     señales más complejas.
+4. **Coarse risk labels**  
+   - Mitigation: although labels are episode-level, step-wise features allow
+     the calibrator to learn finer intra-episode patterns.
 
-## 6. Integración con CHARM
+---
 
-1. El actor principal (CHARM) calcula `Q_charm(s,a)` para todas las acciones.
-2. Anti-CHARM calcula `P_anti(s,a)` y `lambda_t` con `penalty_vector`.
-3. La política efectiva se define sobre:
+## 6. Integration with CHARM
+
+1. CHARM computes `Q_charm(s,a)`.
+2. Anti-CHARM computes `P_anti(s,a)` and `λ_t` via `penalty_vector`.
+3. The effective policy uses:
 
    \[
    Q_{\text{eff}}(s,a) = Q_{\text{charm}}(s,a) - \lambda_t P_{\text{anti}}(s,a)
    \]
 
-4. El agente ejecuta `argmax_a Q_eff(s,a)` o aplica `softmax(Q_eff)` si trabaja
-   con políticas estocásticas.
+4. The agent selects `argmax_a Q_eff(s,a)` or samples from `softmax(Q_eff)`.
 
-De esta forma, Anti-CHARM funciona como **regulador contextual**: no censura
-acciones específicas, sino que reconfigura el paisaje de decisión para que
-los valles encantados y los loops tengan menos atractivo efectivo.
+Anti-CHARM thus acts as a **contextual regulator** that reshapes the decision
+landscape rather than censoring specific actions, reducing the attractiveness
+of enchanted valleys and loops.

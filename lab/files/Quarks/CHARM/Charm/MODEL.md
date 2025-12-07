@@ -1,51 +1,54 @@
-# CHARM — Modelo de campo estructural en Enchanted Valley
+# CHARM — Structured Field Model in Enchanted Valley
 
-## 1. Rol dentro de la arquitectura Quarks
+## 1. Role inside the Quarks Architecture
 
-CHARM es el quark orientado a **aprovechar estructura** en entornos con
-topología rica y dinámicas no estacionarias. No cambia el objetivo de
-recompensa, pero deforma el paisaje de decisión mediante un campo potencial
-aprendido sobre el grafo explorado.
+CHARM is the quark focused on **exploiting structure** in environments with rich
+topology and non-stationary dynamics. It does not modify the reward objective,
+but instead deforms the decision landscape through a learned potential field over
+the explored graph.
 
-El entorno Enchanted Valley se modela como un grafo dirigido con:
+The Enchanted Valley environment is modeled as a directed graph with:
 
-- rutas "cortas" que en ciertas fases se vuelven riesgosas,
-- caminos alternativos más largos pero seguros,
-- cambios de fase que modifican los riesgos de algunas aristas.
+- “short” routes that become risky during certain phases,
+- longer but safer alternative paths,
+- phase shifts that modify the risk of specific edges.
 
-CHARM introduce un campo Φ(s) y un acoplamiento λ tal que la política efectiva
-del agente tabular es:
+CHARM introduces a potential field Φ(s) and a coupling coefficient λ such that
+the effective policy of the tabular agent becomes:
 
 \[
 \pi(a\mid s) \propto
-\exp\bigl(Q(s,a) \; + \; \lambda \cdot \Delta \Phi(s,a)\bigr)
+\exp\bigl(Q(s,a) + \lambda \cdot \Delta \Phi(s,a)\bigr)
 \]
 
-donde:
+where:
 
-- `Q(s,a)` es el valor tabular aprendido por TD,
-- `ΔΦ(s,a)` es el cambio de potencial estimado por `CharmField`,
-- `λ` se ajusta con un paso de meta–control (Lion) en función de la ganancia
-  estructural observada.
+- `Q(s,a)` is the tabular TD value estimate,
+- `ΔΦ(s,a)` is the potential difference estimated by `CharmField`,
+- `λ` is adjusted through a meta-control step (Lion optimizer) based on observed
+  structural gain.
 
-## 2. Señales internas
+---
 
-CHARM mantiene, entre otros:
+## 2. Internal Signals
 
-- `edge_costs(s,s')` — costo estructural estimado para cada arista
-  (a partir de recompensas y TD–error).
-- `V(s)` y `ρ(s)` — crítico local y "polarización isomérica" derivada del
-  TD–error.
-- `diffusion_field(s)` — campo de difusión K–pasos desde los goals.
-- `lambda_field` — intensidad actual del shaping estructural.
+CHARM maintains several internal signals:
 
-Estos términos se recombinan para producir campos potenciales que favorecen
-trayectorias robustas frente a cambios de fase en el valle.
+- `edge_costs(s,s')` — estimated structural cost for each edge (derived from reward
+  signals and TD-error),
+- `V(s)` and `ρ(s)` — local critic value and **isomeric polarization** extracted from
+  TD-errors,
+- `diffusion_field(s)` — K-step diffusion field propagated from goal states,
+- `lambda_field` — current intensity of structural shaping.
 
-## 3. Uso recomendado
+These terms are recombined to produce potential fields that bias the agent towards
+robust trajectories under changing valley phases.
 
-- Explorar cómo evoluciona la recompensa cuando se activan o no los campos
-  de Charm.
-- Observar la interacción entre λ y la no estacionariedad del entorno.
-- Usar Enchanted Valley como *testbed* controlado para ideas de shaping
-  estructural antes de pasar a entornos más grandes.
+---
+
+## 3. Recommended Usage
+
+- Study reward evolution with Charm's field active vs disabled.
+- Observe the interaction between λ and environmental non-stationarity.
+- Use Enchanted Valley as a controlled *testbed* for structural shaping ideas
+  before scaling to larger environments.

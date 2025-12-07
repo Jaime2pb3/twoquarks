@@ -152,6 +152,7 @@ nav{
 .section .subtitle{
   font-size:.98rem; opacity:.48; margin-bottom:22px;
 }
+.section + .section{scroll-margin-top:84px}
 
 /* -------- CARDS -------- */
 .card-grid{
@@ -165,8 +166,8 @@ nav{
   backdrop-filter:blur(8px);
   border-radius:12px;
   padding:26px;
-  height:178px;
-  transition:.38s ease;
+  min-height:178px;
+  transition:.25s ease;
 }
 .card:hover{
   background:var(--card2);
@@ -201,68 +202,6 @@ nav{
   padding:80px 6vw; text-align:center;
   opacity:.82; font-size:.92rem;
 }
-
-/* ----- QUARK COLLAPSE ----- */
-.card.collapsed {
-  position: relative;
-  height: 178px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-/* hide original text when collapsed */
-.card.collapsed .date,
-.card.collapsed .title {
-  opacity: 0;
-}
-
-/* button container */
-.quark-buttons {
-  position: absolute;
-  display: flex;
-  gap: 14px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity .38s ease, transform .38s ease;
-}
-
-.card.show-buttons .quark-buttons {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* button style */
-.quark-buttons a {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.2);
-  background: rgba(255,255,255,.06);
-  font-size: .88rem;
-  transition: .38s ease;
-}
-
-.quark-buttons a:hover {
-  background: rgba(255,255,255,.18);
-}
-
-/* disintegration animation */
-@keyframes quarkDisperse {
-  0% { filter: blur(0px); opacity: 1; }
-  50% { filter: blur(6px); opacity: 0.4; }
-  100% { filter: blur(14px); opacity: 0; }
-}
-
-.card.disintegrate .date,
-.card.disintegrate .title {
-  animation: quarkDisperse .35s ease forwards;
-}
-
-/* anchor offset */
-.section + .section{scroll-margin-top:84px}
 </style>
 </head>
 
@@ -295,14 +234,13 @@ nav{
     <!-- Spacer -->
     <div class="spacer-nav"></div>
 
-    <!-- CTA buttons -->
+    <!-- Single CTA: Quark's Lab -->
     <div class="cta-wrapper">
-      <a class="cta" href="notebooks.html" target="_self">
+      <a class="cta" href="notebooks.html" target="_self">Quark's Lab</a>
     </div>
 
   </div>
 </nav>
-
 
 <!-- HERO -->
 <section class="hero">
@@ -313,15 +251,14 @@ nav{
 <section class="section" id="down">
   <h2>DOWN — Transitions</h2>
   <div class="subtitle">State change • Pipeline flow • Dynamic adaptation.</div>
-
   <div class="card-grid">
     <div class="card">
       <div class="date">Oct–Nov 2025</div>
-      <div class="title">Levo-HF Down-Flavor Oscillatory Q-Learning</div>
+      <div class="title">Flavor Down - Levo-HF Oscillatory Q-Learning</div>
     </div>
     <div class="card">
       <div class="date">Oct 2025</div>
-      <div class="title">LevoParadoxIsomer — Tabular dual-Q for dynamic risk biasing</div>
+      <div class="title">Flavor AntiDown - LevoParadoxIsomer Tabular dual-Q for dynamic risk biasing</div>
     </div>
   </div>
 </section>
@@ -330,7 +267,6 @@ nav{
 <section class="section" id="strange">
   <h2>STRANGE — Color Confinement</h2>
   <div class="subtitle">Composite agents • Emergent reconstruction.</div>
-
   <div class="card-grid">
     <div class="card">
       <div class="date">Nov 2025</div>
@@ -347,15 +283,14 @@ nav{
 <section class="section" id="top">
   <h2>TOP — Heavy States</h2>
   <div class="subtitle">High-mass architectures • Full-scale stacks.</div>
-
   <div class="card-grid">
     <div class="card">
-      <div class="date">2025</div>
-      <div class="title">Integrated LevoBell Evolution Stack</div>
+      <div class="date">algorithm under development</div>
+      <div class="title">Flavor Top - ◌</div>
     </div>
     <div class="card">
-      <div class="date">2025</div>
-      <div class="title">Paradox-Driven Adaptive RL Core</div>
+      <div class="date">algorithm under development</div>
+      <div class="title">Flavor AntiTop - ◌</div>
     </div>
   </div>
 </section>
@@ -363,16 +298,15 @@ nav{
 <!-- CHARM -->
 <section class="section" id="charm">
   <h2>CHARM — Elementaries</h2>
-  <div class="subtitle">Kernels • ZO primitives • CUDA-level reasoning.</div>
-
+  <div class="subtitle">Kernels • Lion meta-control • CUDA-level reasoning.</div>
   <div class="card-grid">
     <div class="card">
-      <div class="date">July 2025</div>
-      <div class="title">Zero-Order Optimization Loops (Z-OLO)</div>
+      <div class="date">Nov-Dec 2025</div>
+      <div class="title">Flavor Charm - Isomeric-Dijkstra Lion Meta-control</div>
     </div>
     <div class="card">
-      <div class="date">August 2025</div>
-      <div class="title">High-frequency perturbation policies</div>
+      <div class="date">Nov-Dec 2025</div>
+      <div class="title">Flavor AntiCharm - Isomeric-Floyd adaptive momentum</div>
     </div>
   </div>
 </section>
@@ -381,24 +315,22 @@ nav{
 <section class="section" id="up">
   <h2>UP — <i>Truth</i> 𝑻</h2>
   <div class="subtitle">Validated output • Observable results.</div>
-
   <div class="card-grid">
     <div class="card">
-      <div class="date">February 2025</div>
-      <div class="title">LevoBell — structural reward-driven intelligence</div>
+      <div class="date">algorithm under development</div>
+      <div class="title">Flavor Up - ◌</div>
     </div>
     <div class="card">
-      <div class="date">March 2025</div>
-      <div class="title">Bellman-Shift Stability Baseline</div>
+      <div class="date">algorithm under development</div>
+      <div class="title">Flavor AntiUp - ◌</div>
     </div>
   </div>
 </section>
 
 <!-- BOTTOM -->
 <section class="section" id="bottom">
-  <h2>BOTTOM — Start Interaction</h2>
+  <h2>BOTTOM — Start Collapse Interaction</h2>
   <div class="subtitle">Entry points to the lab.</div>
-
   <div class="links">
     <a href="https://github.com/Jaime2pb3" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/jaimedeepmind/" target="_blank">LinkedIn</a>
@@ -409,7 +341,7 @@ nav{
 
 <!-- FOOTER -->
 <div class="footer">
-  © 2025 TwoQuarks • research, precision, sobriety, intent.
+  © 2025 TwoQuarks • Q-research, precision, sobriety, intent.
 </div>
 
 <!-- STARFIELD SCRIPT -->
@@ -462,167 +394,8 @@ function render(){
 render();
 </script>
 
+<!-- HAMBURGER NAV -->
 <script>
-// QUARK COLLAPSE LOGIC (toggle)
-document.querySelectorAll('.card').forEach(card => {
-  const btns = document.createElement('div');
-  btns.className = 'quark-buttons';
-  btns.innerHTML = `
-    <a href="#">README</a>
-    <a href="#">MODEL</a>
-    <a href="#">GRAPHICS</a>
-  `;
-  card.appendChild(btns);
-
-  btns.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', e => {
-      e.stopPropagation();
-    });
-  });
-
-  card.addEventListener('click', () => {
-    const isCollapsed = card.classList.contains('collapsed');
-
-    if (!isCollapsed) {
-      card.classList.add('disintegrate');
-      setTimeout(() => {
-        card.classList.add('collapsed', 'show-buttons');
-      }, 350);
-    } else {
-      card.classList.remove('collapsed', 'show-buttons', 'disintegrate');
-    }
-  });
-});
-</script>
-
-<script>
-// ===== UNIVERSAL QUARK ROUTER =====
-
-const quarkSectionMap = {
-  "down":   "DOWN",
-  "up":     "UP",
-  "charm":  "CHARM",
-  "strange":"STRANGE",
-  "top":    "TOP",
-  "bottom": "BOTTOM"
-};
-
-// 2. Card title -> project metadata inside that QUARK
-const projectMap = {
-  // DOWN
-  "Levo-HF Down-Flavor Oscillatory Q-Learning": {
-    folder: "Levo-HF",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics: "GRAPHICS.md"
-  },
-  "LevoParadoxIsomer — Tabular dual-Q for dynamic risk biasing": {
-    folder: "LevoParadoxIsomer",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics: "GRAPHICS.md"
-  },
-
-  // STRANGE  
-  "Flavor Strange — Thermodynamic swarm control": {
-    folder: "Strange",
-    readme:  "README.md",
-    model:   "notebooks/Strange_HypothesisLab.ipynb",
-    graphics:"GRAPHICS.md"
-  },
-  "Flavor AntiStrange — Latent potential regulator": {
-    folder: "AntiStrange",
-    readme:  "README.md",
-    model:   "notebooks/antistrange_HypotesisLab.ipynb",
-    graphics:"GRAPHICS.md"
-  },
-
-  // TOP
-  "Integrated LevoBell Evolution Stack": {
-    folder: "Levobell_evolution",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics:"GRAPHICS.md"
-  },
-  "Paradox-Driven Adaptive RL Core": {
-    folder: "Paradox_driven",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics:"GRAPHICS.md"
-  },
-
-  // CHARM
-  "Zero-Order Optimization Loops (Z-OLO)": {
-    folder: "Z_olo",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics:"GRAPHICS.md"
-  },
-  "High-frequency perturbation policies": {
-    folder: "Freq_policies",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics:"GRAPHICS.md"
-  },
-
-  // UP
-  "LevoBell — structural reward-driven intelligence": {
-    folder: "Levobell",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics:"GRAPHICS.md"
-  },
-  "Bellman-Shift Stability Baseline": {
-    folder: "Bellman-Shift",
-    readme: "README.md",
-    model:  "MODEL.md",
-    graphics:"GRAPHICS.md"
-  }
-};
-
-document.querySelectorAll('.section').forEach(section => {
-  const secID = section.id.toLowerCase();
-  const quarkFolder = quarkSectionMap[secID];
-  if (!quarkFolder) return;
-
-  const cards = section.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    const titleEl = card.querySelector('.title');
-    if (!titleEl) return;
-
-    const rawTitle = titleEl.textContent.trim();
-    const normalizedTitle = rawTitle.replace(/\.$/, "");
-
-    const meta = projectMap[normalizedTitle];
-    const btns = card.querySelector('.quark-buttons');
-    if (!btns) return;
-
-    if (meta) {
-      const base = `Quarks/${quarkFolder}/${meta.folder}`;
-
-      const readmeHref   = meta.readme   ? `${base}/${meta.readme}`   : base;
-      const modelHref    = meta.model    ? `${base}/${meta.model}`    : base;
-      const graphicsHref = meta.graphics ? `${base}/${meta.graphics}` : base;
-
-      btns.innerHTML = `
-        <a href="${readmeHref}"   target="_blank">README</a>
-        <a href="${modelHref}"    target="_blank">MODEL</a>
-        <a href="${graphicsHref}" target="_blank">GRAPHICS</a>
-      `;
-    } else {
-      btns.innerHTML = `
-        <a>README</a>
-        <a>MODEL</a>
-        <a>GRAPHICS</a>
-      `;
-    }
-  });
-});
-</script>
-
-<script>
-// HAMBURGER NAV
 const menuBtn  = document.getElementById('menuBtn');
 const navLinks = document.getElementById('navLinks');
 

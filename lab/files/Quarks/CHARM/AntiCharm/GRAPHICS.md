@@ -1,44 +1,80 @@
-# Anti-CHARM — Visualizaciones sugeridas
+# \# Anti-CHARM — Suggested Visualizations
 
-Anti-CHARM no busca maximizar reward directo sino moderar el comportamiento
-del actor principal (CHARM u otro agente) cuando el contexto se vuelve
-peligroso: loops, valles encantados y colapso de diversidad.
+# 
 
-Algunas gráficas útiles para interpretar su efecto:
+# Anti-CHARM does not aim to directly maximize reward. Instead, it moderates the
 
-## 1. Lambda de riesgo λ_t
+# behavior of the main actor (CHARM or any other agent) when the context becomes
 
-Trazar λ_t por episodio o por bloque de pasos para ver:
+# dangerous: loops, enchanted valleys, and diversity collapse.
 
-- cuándo el sistema percibe el contexto "caliente" (reward denso, baja
-  diversidad),
-- cuándo se relaja porque la exploración es más variada.
+# 
 
-## 2. Penalización promedio P_anti
+# Useful plots to interpret its effect include:
 
-Para cada episodio, calcular la media de \(P_{\text{anti}}(s,a)\) sobre
-las acciones visitadas. Esto indica qué tan fuerte está empujando
-Anti-CHARM contra loops y valles falsos.
+# 
 
-## 3. Reward bruto vs reward regulado
+# \## 1. Risk Lambda λ\_t
 
-Comparar:
+# 
 
-- recompensa acumulada del actor base con
-- recompensa acumulada cuando se usa \(Q_{\text{eff}} = Q_{\text{charm}} -
-  \lambda_t P_{\text{anti}}\).
+# Plot λ\_t per episode or per block of steps in order to observe:
 
-El objetivo no es siempre ganar más reward, sino evitar trayectorias
-patológicas (ciclos infinitos, atrapamiento en subregiones de alto reward
-pero bajo progreso).
+# 
 
-## 4. Diversidad y densidad de visitas
+# \- when the system detects a “hot” context (dense reward, low diversity),
 
-- Histograma de estados visitados antes y después de activar Anti-CHARM.
-- Evolución del número de estados únicos visitados por episodio.
+# \- when it relaxes as exploration becomes more distributed.
 
-Estos gráficos ayudan a ver si Anti-CHARM está dispersando el comportamiento
-o solo recortando unas pocas rutas malas.
+# 
 
-En conjunto, estas visualizaciones permiten leer a Anti-CHARM como un
-regulador contextual y no como un simple "castigo adicional" fijo.
+# \## 2. Mean Penalty P\_anti
+
+# 
+
+# For each episode, compute the average of \\(P\_{\\text{anti}}(s,a)\\) over the
+
+# visited actions. This indicates how strongly Anti-CHARM is pushing against
+
+# loops and fake valleys.
+
+# 
+
+# \## 3. Raw Reward vs. Regulated Reward
+
+# 
+
+# Compare:
+
+# 
+
+# \- cumulative reward of the base actor, with
+
+# \- cumulative reward when using \\(Q\_{\\text{eff}} = Q\_{\\text{charm}} -
+
+#   \\lambda\_t P\_{\\text{anti}}\\).
+
+# 
+
+# The goal is not necessarily higher reward, but the avoidance of pathological
+
+# trajectories (infinite cycles, trapping in high-reward but low-progress
+
+# subregions).
+
+# 
+
+# \## 4. Diversity and Visit Density
+
+# 
+
+# \- Histogram of visited states before and after activating Anti-CHARM.
+
+# \- Evolution of the number of unique visited states per episode.
+
+# 
+
+# Together, these visualizations allow Anti-CHARM to be interpreted as a
+
+# \*\*contextual regulator\*\* rather than a simple fixed “extra punishment.”
+

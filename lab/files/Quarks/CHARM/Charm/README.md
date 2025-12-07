@@ -1,23 +1,26 @@
 # CHARM — Enchanted Valley
 
-Este módulo implementa el quark **CHARM** sobre el entorno Enchanted Valley.
+This module implements the **CHARM** quark over the Enchanted Valley environment.
 
-- El entorno es un grafo no estacionario con varias rutas y fases de riesgo.
-- `CharmField` construye un campo estructural a partir del subgrafo explorado.
-- Un agente Q-learning tabular usa este campo como *shaping* potencial, con un
-  acoplamiento λ ajustado por un optimizador tipo Lion (sign–momentum).
+- The environment is a non-stationary graph with multiple routes and shifting
+  risk phases.
+- `CharmField` builds a structural field from the explored subgraph.
+- A tabular Q-learning agent uses this field as potential-based shaping, coupled
+  via λ, which is tuned using a Lion-style sign–momentum optimizer.
 
-El archivo principal es:
+Main file:
 
-- `levo/charm_enchanted_valley.py` — contiene:
-    - la definición del entorno Enchanted Valley,
-    - la clase `CharmField`,
-    - el agente `CharmAgent`,
-    - la función `train_charm_enchanted_valley(...)` que entrena al agente y
-      devuelve estadísticas listas para graficar.
+- `levo/charm_enchanted_valley.py` — includes:
+    - the Enchanted Valley environment definition,
+    - the `CharmField` class,
+    - the `CharmAgent`,
+    - the function `train_charm_enchanted_valley(...)` that trains the agent and
+      returns statistics ready for plotting.
 
-El notebook `notebooks/Charm_EnchantedValley_core.ipynb` muestra un flujo mínimo:
+Notebook workflow:
 
-1. Ajustar unos cuantos hiperparámetros estratégicos (episodios, γ, λ inicial, etc.).
-2. Ejecutar `train_charm_enchanted_valley`.
-3. Visualizar recompensa, λ y ρ̄ por episodio.
+`notebooks/Charm_EnchantedValley_core.ipynb`
+
+1. Set strategic hyperparameters (episodes, γ, initial λ, etc.).
+2. Run `train_charm_enchanted_valley`.
+3. Visualize reward evolution, λ dynamics, and average polarization ρ̄ per episode.
